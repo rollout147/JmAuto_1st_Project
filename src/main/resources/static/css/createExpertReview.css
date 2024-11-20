@@ -1,0 +1,143 @@
+/*
+table, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+*/
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular'; /* 폰트만 지정 */
+}
+
+#expertReviewInput{
+	width: 1320px;
+	height: 1701px;
+	margin-left: 300px;
+	background-image: url("../images/main/kh_createExpertReviewBackground.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#writerDiv{
+	position: absolute;
+	top: 190px;
+	left: 500px;
+}
+
+.writerDetail {
+	width: 370px;
+	height: 70px;
+	font-size: 24px;
+	font-weight: 900;
+	text-align: right;
+}
+
+#carBasicInfo{
+	position: absolute;
+	top: 428px;
+	left: 340px;
+}
+
+.InfoBlank{
+	width: 100px;
+	height: 70px;
+	font-size: 18px;
+	font-weight: 900;
+	text-align: right;
+	
+}
+
+.InfoCell{
+	width: 170px;
+	height: 70px;
+	font-size: 18px;
+	font-weight: 900;
+	padding-right: 10px;
+	text-align: right;
+}
+
+#carReviewBasic{
+	position: absolute;
+	top: 817px;
+	left: 340px;
+}
+
+select{
+	width: 90px;
+	height: 35px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+#carReviewExpandable{
+	position: absolute;
+	top: 1060px;
+	left: 340px;
+}
+
+#expertReviewContentDiv{
+	position: absolute;
+	top: 190px;
+	left: 1005px;
+}
+
+#expertReviewContent{
+	width: 565px;
+	height: 860px;
+}
+
+.expertReviewContentSize{
+	text-align: left;
+	width: 50px;
+	height: 25px;
+	margin-left: 400px;
+}
+
+#expertReviewScore{
+	position: absolute;
+	top: 1200px;
+	left: 1250px;
+}
+
+#commitButton{
+	position: absolute;
+	top: 1290px;
+	left: 800px;
+
+
+}
+
+
+#btnCommit {
+	width: 320px;
+	height: 50px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-size: 16px;
+	font-weight: 900;
+	border: none;
+	cursor: pointer;
+	margin: 5px;
+	margin-top: 30px;
+}
+
+#btnPreview {
+	width: 320px;
+	height: 50px;
+	background-color: #FDFDFD;
+	color: #FF4714;
+	font-size: 16px;
+	font-weight: 900;
+	border: 2px solid #FF4714;
+	cursor: pointer;
+	margin: 5px;
+}

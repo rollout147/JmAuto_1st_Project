@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+	<select id="selectUser" resultType="int">
+	select count(*)
+	from user_table
+	</select>
+	
+	<select id="loginUser" resultType="User_Table" parameterType="User_Table">
+	select *
+	from User_Table
+	where user_id = #{user_id}
+	and user_pw = #{user_pw}	
+	</select>
+	
+	<insert id="joinUser" parameterType="User_Table">
+		insert into user_table
+		(user_id,user_pw,user_name,user_tel,user_zipcode,user_addr1,user_addr2,user_email,user_regdate,user_level,user_type,del_state)
+		values(#{user_id},#{user_pw},#{user_name},#{user_tel},#{user_zipcode},#{user_addr1},#{user_addr2},#{user_email},SYSDATE,'1','B',1)
+	</insert>
+	
+	<select id="confirmId" resultType="int" parameterType="String">
+	 select count(*)
+	 from user_table
+	 where user_id = #{user_id}
+	</select>
+	
+	<select id="findByPw" parameterType="String"  resultType="String">
+	select user_pw
+	from User_Table
+	where user_id like #{id}
+	</select>
+	
+	<update id="userUpdate" parameterType="User_Table">
+		update User_Table
+		set user_id = #{user_id}, 
+			user_pw = #{user_pw}, 
+			user_tel = #{user_tel},
+			user_zipcode = #{user_zipcode},
+			user_addr1 = #{user_addr1},
+			user_addr2 = #{user_addr2}
+		where user_id = #{user_id}
+	</update>
+	
+	<update id="taltwae" parameterType="String">
+		update User_Table
+		set del_state = 1
+		where user_id =#{user_id}
+	
+	</update>
+	
+	<select id="user" parameterType="String" resultType="User_Table">
+		select *
+		from user_table
+		where user_id = #{user_id}
+	</select>
+	
+</mapper> 

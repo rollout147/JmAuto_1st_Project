@@ -1,0 +1,254 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+body,html {
+	/* 브라우저 기본 여백을 제거 */
+	margin: 0;
+	/* 브라우저 기본 패딩을 제거 */
+	padding: 0;
+	/* 화면 높이를 100%로 설정 */
+	height: 100%;
+	/* 페이지의 배경색을 연한 회색으로 설정합니다. */
+	background-color: #fafafa;
+	font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.contents {
+	/* 수직 중앙 정렬 */
+	align-items: center;
+	/* 뷰포트 높이 100%로 설정 */
+	height: 100vh;
+}
+
+.content {
+	display: flex;
+	/* 세로 방향으로 배치 */
+	flex-direction: column;
+	/* 수평 중앙 정렬 */
+	align-items: center;
+	/* 수직 중앙 정렬 */
+	justify-content: center;
+}
+
+/* 제목 스타일 */
+h1 {
+	position: absolute;
+	top: 150px;
+	text-align: center;
+	color: #313131;
+	font-size: 40px;
+}
+
+.join_step {
+	/* 플렉스 박스 레이아웃 사용 */
+	display: flex;
+	position: absolute;
+	top: 250px;
+	/* 가로 가운데 정렬 */
+	justify-content: center;
+	/* 리스트 스타일 제거 */
+	list-style: none;
+	/* 기본 패딩 제거 */
+	padding: 0;
+	margin-bottom: 30px;
+}
+
+.join_step li {
+	/* 항목 간의 간격 설정 */
+	margin: 0 10px;
+	/* 텍스트 위치를 조정하기 위해 relative 유지 */
+	position: relative;
+}
+
+.join_step li img {
+	/* 리스트 항목 내 이미지의 크기를 설정 */
+	width: 150px;
+}
+
+.join_step li span {
+	/* 텍스트를 절대 위치로 설정 */
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	/* 텍스트 색상 설정 */
+	color: #666;
+	/* 텍스트 줄 간격 설정 */
+	line-height: 1.462em;
+	/* 텍스트가 줄바꿈되지 않도록 설정 */
+	white-space: nowrap;
+	/* 텍스트를 중앙 정렬 */
+	transform: translate(-50%, 0);
+}
+
+/* 회원가입 폼을 감싸는 컨테이너 스타일 */
+.container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	/* 컨테이너의 배경색을 흰색에 가까운 연한 회색으로 설정합니다. */
+	background-color: #fdfdfd;
+	/* 컨테이너에 미세한 그림자를 추가하여 입체감을 줍니다. */
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	top: 400px;	
+	/*  컨테이너의 너비 1320px 고정 */
+	width: 1000px;
+	/* 중앙 정렬 */
+	margin: 0 auto;
+	/* padding을 width에 포함하여 계산 */
+	padding: 150px 150px;
+	
+	box-sizing: border-box;
+	/* 자동으로 좌우 여백을 설정하여 가운데 정렬 */
+	margin: 0 auto ;
+	height: auto;
+}
+
+.form-group {
+	margin-bottom: 30px; /* 각 폼 그룹의 하단 마진을 설정합니다. */
+	display: flex; /* 폼 그룹 내의 항목들을 플렉스 박스로 배치합니다. */
+	align-items: center; /* 폼 그룹 내 항목들을 수직 중앙에 정렬합니다. */
+	flex-wrap: wrap; /* 줄바꿈을 허용 */
+}
+
+
+.form-group label {
+	width: 150px;
+	/* 라벨의 너비를 150px로 설정합니다. */
+	margin-right: 10px;
+	/* 라벨과 입력 필드 사이의 여백을 설정합니다. */
+	font-weight: bold;
+	/* 라벨의 글씨를 두껍게 설정합니다. */
+	font-size: 21px;
+}
+
+.form-group input {
+	flex: 1;
+	/* 입력 필드가 남은 공간을 모두 차지하도록 설정합니다. */
+	padding: 8px;
+	/* 입력 필드의 내부 여백을 설정합니다. */
+	border: 1px solid #ccc;
+	/* 입력 필드의 테두리 색을 연한 회색으로 설정합니다. */
+	height: 35px;
+	font-size: 16px;
+}
+.check_font {
+	position: relative;
+	left: 165px; /* 이 요소만 한 줄을 차지하게 함 */
+	flex-basis: 100%;
+	margin-top: 0px;
+	margin-bottom: 0px; /* 메시지 크기 조정 */
+	font-size: 14px;
+	color: red; /* 기본 메시지 색상 설정 */
+	margin-top: 5px; /* 메시지와 입력 필드 사이의 여백 */
+}
+
+
+.form-group button:hover {
+	color: #ffffffcc;
+}
+
+.form-group input[type="text"]:focus,
+input[type="password"]:focus {
+	border-color: #ff4714;
+	outline: none;
+}
+
+.form-group input:focus {
+	border-color: #ff4714;
+	outline: none;
+}
+
+.form-group button {
+	background-color: #ff4714;
+	/* 버튼의 배경색을 주황색으로 설정합니다. */
+	color: #fdfdfd;
+	/* 버튼의 글씨 색을 흰색으로 설정합니다. */
+	border: none;
+	/* 버튼의 기본 테두리를 제거합니다. */
+	padding: 8px;
+	/* 입력 필드의 내부 여백을 설정합니다. */
+	margin-left: 20px;
+	height: 35px;
+	width: 120px;
+}
+
+
+select {
+	padding: 8px;
+	/* 입력 필드의 내부 여백을 설정합니다. */
+	border: 1px solid #ccc;
+	/* 입력 필드의 테두리 색을 연한 회색으로 설정합니다. */
+	width: 200px;
+	font-size: 16px;
+	height: 35px;
+    font-style: normal;
+	line-height: normal; /* 기본 line-height 사용 */
+    vertical-align: middle; /* 텍스트를 수직 중앙 정렬 */
+}
+
+.moveBtn{
+	margin-top: 80px;
+}
+
+
+.moveBtn button {
+	text-align: center;
+	width: 200px;
+	/* 제출 버튼의 너비를 컨테이너 너비에서 20px 줄여서 설정 */
+	min-width: 320px;
+	min-height: 60px;
+	color: white;
+	/* 제출 버튼의 글자 색을 흰색으로 설정 */
+	background-color: #ff4714;
+	/* 제출 버튼의 배경색을 주황색으로 설정 */
+	height: 50px;
+	/* 제출 버튼의 높이를 40px로 설정 */
+	padding: 10px;
+	/* 제출 버튼 내부 여백을 10px로 설정 */
+	border: none;
+	/* 제출 버튼의 테두리를 제거 */
+	font-weight: bold;
+	/* 제출 버튼의 글자를 굵게 설정 */
+	transition: background-color 0.3s;
+	/* 배경색 변환을 부드럽게 0.3초 동안 적용 */
+	cursor: pointer;
+	font-size: 16px;
+	
+
+}
+
+button:hover {
+	color: #ffffffcc;
+}
+
+
+#user_email3 {
+	width: 50px;
+}
+
+button:disabled {
+	background-color: #d3d3d3;
+	cursor: not-allowed;
+}
+
+.moveBtn {
+	text-align: center;
+
+
+}
+
+.moveBtn #backBtn {
+	background-color: #fdfdfd;
+	border: solid 1px #ff4714;
+	color: #ff4714;
+	margin: 0 20px 0 0;
+}
+
+.moveBtn #submitBtn {
+	margin: 0 0 0 20px;
+}
+
+
+footer{
+	position: relative;
+	
+}

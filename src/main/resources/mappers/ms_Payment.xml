@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+ 
+	<select id="PaymentUser"   resultType="int">
+		select count(*)
+		from Payment
+	</select>
+	
+	
+	<select id="buyList" parameterType="Payment" resultType="Payment">
+		select p.*, c.* , i.*, c.user_id as car_user_id
+		from  payment p 
+		JOIN  car_general_info c on p.SELL_NUM = c.SELL_NUM
+		JOIN  car_images i       on c.SELL_NUM = i.SELL_NUM
+		where p.user_id =#{user_id}
+		and   c.del_state=1
+		AND   i.img_url LIKE '%' || '_1.' || '%'
+	</select>
+	
+	<select id="buyListDetail" parameterType="map"  resultType="Payment">
+		select p.*, c.*, i.*
+		from payment p 
+		JOIN  car_general_info c on p.SELL_NUM = c.SELL_NUM
+		JOIN  car_images i       on c.SELL_NUM = i.SELL_NUM
+		where p.approval_num=#{approval_num}
+		and p.user_id=#{user_id}
+		AND   i.img_url LIKE '%' || '_1.' || '%'
+	</select>
+	
+	<select id="sellListDetail" parameterType="map" resultType="Payment">
+		select p.*, c.*, i.*
+		from payment p 
+		JOIN  car_general_info c on p.SELL_NUM = c.SELL_NUM
+		JOIN  car_images i       on c.SELL_NUM = i.SELL_NUM
+		where p.approval_num=#{approval_num}
+		and c.user_id=#{user_id}
+		AND   i.img_url LIKE '%' || '_1.' || '%'
+	</select>
+	
+	<select id="paymentselect" parameterType="String" resultType="long">
+		select sell_num
+		from payment
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="approval" parameterType="map" resultType="String">
+		select p.approval_num
+		from payment p inner join car_general_info c
+		on p.sell_num = c.sell_num
+		where c.user_id =#{user_id}
+		and p.sell_num=#{sell_num}
+	</select>
+	
+	
+</mapper> 

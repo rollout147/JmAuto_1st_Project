@@ -1,0 +1,306 @@
+.menu {
+	z-index: 1;
+}
+
+.nav__cont {
+  position: fixed;
+  width: 60px;
+  top:0;
+  height: 100vh;
+  z-index: 1;
+  background-color: #ff766c;
+  overflow:hidden;
+  transition:width .3s ease;
+  cursor:pointer;
+  box-shadow:4px 7px 10px rgba(0,0,0,.4);
+  &:hover {
+    width:230px;
+  }
+  @media screen and (min-width: 600px) {
+    width: 60px;
+  }
+}
+
+.nav__cont_logo {
+	width: 100%;
+	max-width: 42px;
+	height: auto;
+	position: relative;
+	margin: 20px 10px;
+	box-shadow: 0 0 10px 2px rgb(0,0,0,0.01);
+}
+
+.nav {
+  list-style-type: none;
+  padding-top:100px;
+  color:white;
+  height: 800px;
+  &:first-child {
+    padding-top:150px;
+  }
+}
+
+.nav__items {
+	display:flex;
+  padding-bottom:4rem;
+  font-family: 'Pretendard';
+  align-items:center;
+   a {
+    position: relative;
+    display:block;
+    top:0px;
+    padding-left:15px;
+    padding-right:25px;
+    transition:all .3s ease;
+    margin-left:0px;
+    margin-right:10px;
+    text-decoration: none;
+    color:white;
+    font-family: 'Pretendard';
+    font-weight: 400;
+    font-size: 16px;
+     &:after {
+       content:'';
+       width: 100%;
+       height: 100%;
+       position: absolute;
+       top:0;
+       left:0;
+       border-radius:2px;
+       background:radial-gradient(circle at 94.02% 88.03%, #ffbab8, transparent 100%);
+       opacity:0;
+       transition:all .5s ease;
+       z-index: -10;
+     }
+  }
+  &:hover a:after {
+    opacity:1;
+  }
+   img{
+    width:26px;
+    height:auto;
+    position: relative;
+    left:-25px;
+    cursor:pointer;
+    @media screen and(min-width:600px) {
+    	width: 100%;
+      	max-width:28px;
+      	height: auto;
+    	max-height:28px;
+		left:-15px;
+    }
+  }
+}
+.nav__items3 img{
+    width:26px;
+    height:auto;
+    position: relative;
+    left:-25px;
+    cursor:pointer;
+    @media screen and(min-width:600px) {
+    	width: 100%;
+      	max-width:28px;
+      	height: auto;
+    	max-height:28px;
+		left:-15px;
+    }
+}
+
+/* .nav__items3 기본 설정 */
+.nav__items3 {
+  display: flex;
+  flex-direction: column; /* 자식 요소들을 세로로 배치 */
+  padding: 0 0 47px;
+  font-family: 'Pretendard';
+  align-items: flex-start;
+  position: relative;
+}
+
+/* 문의내역 텍스트 스타일 */
+.nav__items3 .nav_items_text3 {
+  position: relative;
+  display: block;
+  padding-left: 15px;
+  padding-right: 25px;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  text-decoration: none;
+  color: #e2e8ee;
+  font-size: 16px;
+  font-family: 'Pretendard';
+  font-weight: 100;
+  top: -21px;
+  left: 20px;
+}
+
+/* 문의내역 텍스트에 마우스를 올렸을 때 배경효과 */
+.nav__items3 .nav_items_text3:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 2px;
+  background: radial-gradient(circle at 94.02% 88.03%, #ff4714, transparent 100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: -10;
+}
+
+.nav__items3:hover .nav_items_text3:after {
+  opacity: 1; /* 마우스를 올리면 배경 활성화 */
+}
+
+/* 서브메뉴(mon_nav_items)를 기본적으로 숨김 (visibility와 opacity 사용) */
+.mon_nav_items {
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: visibility 0s, opacity 0.3s ease, max-height 0.3s ease;
+  overflow: hidden;
+}
+
+/* .nav__items3에 마우스를 올렸을 때 서브메뉴가 펼쳐짐 */
+.nav__items3:hover .mon_nav_items {
+  visibility: visible;  /* 마우스를 올리면 보이기 */
+  opacity: 1;           /* 투명도 조절로 애니메이션 */
+  max-height: 200px;    /* 자연스럽게 펼쳐지는 효과 */
+  overflow: visible;
+}
+
+/* 서브메뉴의 항목 스타일 */
+.mon_nav_items a {
+  position: relative;
+  display: block;
+  padding-left: 40px;
+  padding-right: 25px;
+  margin: 10px 0;
+  text-decoration: none;
+  color: #e2e8ee;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+/* 서브메뉴 항목에 배경효과 추가 */
+.mon_nav_items a:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 2px;
+  background: radial-gradient(circle at 94.02% 88.03%, #ff4714, transparent 100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: -10;
+}
+
+/* 서브메뉴 항목에 마우스를 올렸을 때 배경효과 활성화 */
+.mon_nav_items a:hover:after {
+  opacity: 1;
+}
+
+table, th, td {
+	border-bottom: 2px solid #d3d3d3;
+	border-collapse: collapse;
+
+}
+
+#fullbody {
+	width: 1320px;
+	height: 1320px;
+	padding: 0px;
+	margin: 0 0 0 300px;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+}
+
+
+#searchDiv {
+	position: absolute;
+	top: 30px;
+	left: 330px;
+}
+
+
+#searchDiv input {
+	width: 300px;
+	height: 30px;
+	border-width: 0px;
+	outline: none;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+}
+
+
+#searchButton{
+	width: 100px;
+	height: 30px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-size: 16px;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+}
+
+#searchDiv select{
+	font-size: 14px;
+	font-weight: 700;
+	width: 150px;
+	height: 30px;
+}
+
+#searchDiv span{
+	margin-left: 500px;
+	font-size: 18px;
+	font-weight: 970;
+}
+
+#tableTitle {
+	position: absolute;
+	top: 100px;
+	left: 330px;
+	font-size: 36px;
+	font-weight: 900;
+	text-align: left;
+}
+
+#paymentListDiv {
+
+	position: absolute;
+	top: 200px;
+	left: 400px;
+
+}
+
+#paymentListDiv th{
+	color: #939393;
+}
+
+.paymentListCell{
+	text-align: center;
+	height: 90px;
+}
+
+.paymentListCell button{
+	height: 32px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-weight: 900;
+	border: none;
+	cursor: pointer;
+}
+
+#pagingDiv{
+	position: absolute;
+	width: 700px;
+	top: 1250px;
+	left: 600px;
+}
+
+#paging{
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+}

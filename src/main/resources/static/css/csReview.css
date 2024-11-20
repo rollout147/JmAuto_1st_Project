@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+.header_continer {
+    position: relative; 
+    width: 100%;
+    top: 0;
+    z-index: 1001; 
+}
+
+.menu_continer {
+    position: fixed;
+    top: 0;
+    z-index: 1000; 
+    height: 100vh;
+}
+
+/* 가운데 내용들 포함 틀 */
+.review {
+	display: flex;
+	flex-direction: row;
+	font-family: 'Pretendard';
+	font-size: 14px;
+	white-space: nowrap;
+	text-align: center;
+	justify-content: space-between;
+	background-color: #fafafa;
+	width: 1920px;
+	margin: 0 auto;
+}
+
+.reviewContainer {
+	display: flex;
+	flex-direction: column;
+	width: 1320px;
+	margin: 0 auto;
+}
+
+/* 제목 */
+h1 {
+	font-size: 40px;
+	margin-top: 70px;
+}
+
+/* 안내멘트 */
+.reviewMent {
+	font-size: 15px;
+	margin: 10px;
+}
+
+
+/* 리뷰 목록 */
+.reviewContent {
+	display: grid;
+	grid-template-columns: repeat(3, 380px);
+	gap: 30px;
+	margin: 50px;
+	max-width: 1280px;		
+}
+
+.reviewList {
+	background: #ffffff;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.04);
+}
+
+/* 리뷰 이미지 크기 */
+.rev_img {
+	width: 380px;
+	height: 230px;
+}
+
+/* 별점 */
+.rev_evaluetion {
+	margin: 20px 20px 10px;
+}
+
+/* 리뷰제목 */
+.title {
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    white-space: normal;
+    width: 300px;
+    height: 64px;
+    font-family: 'Pretendard', ExtraBold;
+    font-weight: bold;
+    font-size: 21px;
+    margin: 10px 20px;
+}
+
+/* 구매차량정보 */
+.info {
+	margin: 20px;
+	float: left;
+	color: #b9b9b9;
+}
+
+/* 리뷰내용 */
+.content {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    width: 300px;
+    height: 64px;
+    margin: 10px 20px;
+    font-size: 14px;
+}
+
+/* 리뷰올린날짜 */
+.date {
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px 20px 20px;
+	right: 0px;
+	bottom: 0px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #ff4714;
+}
+
+/* 페이지버튼 */
+.reviewPage {
+	margin: 20px auto 50px auto;
+	font-size: 18px;
+}
+
+.reviewPage a.currentPage {
+	font-weight: bold;
+    color: #ff4714;
+}
+
+.reviewPage a.preNext {
+	font-size: 18px;	
+}

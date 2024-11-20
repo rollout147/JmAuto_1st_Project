@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.ReviewMapper.jw">
+ 
+ 	<select id="reviewTotalPage" resultType="int">
+ 		SELECT count(*)
+ 		FROM review r
+		JOIN payment p on r.APPROVAL_NUM = p.APPROVAL_NUM
+		JOIN car_general_info c on p.SELL_NUM = c.SELL_NUM	
+ 	</select>
+ 	
+ 	<select id="selectReview" parameterType="ReviewListInfo" resultType="ReviewListInfo">
+ 		SELECT *
+ 		FROM
+ 		(
+ 			SELECT rownum rn, a.*
+ 			FROM
+ 				(
+ 				SELECT  r.APPROVAL_NUM, r.USER_ID
+                      , p.SELL_NUM
+                      , i.img_url
+                      , r.EVALUATION, r.review_title
+                      , c.manu_date
+                      , r.file_name1, r.file_name2, r.file_name3, r.file_url
+                      , SUBSTR(c.manu_date,1,2) || '년' || substr(c.manu_date,3,4) || '월식' manu_date_char
+                      , c.mileage, c.fuel, c.brand, c.model 
+                      , r.review_content, r.review_date
+                FROM review r
+                Left OUTER JOIN payment p on r.APPROVAL_NUM = p.APPROVAL_NUM
+                Left OUTER JOIN car_general_info c on p.SELL_NUM = c.SELL_NUM
+                Left OUTER JOIN car_images i on c.SELL_NUM = i.SELL_NUM
+                WHERE r.del_state = 0
+                AND i.img_url LIKE '%' || '_1.' || '%'
+	 			)
+	 			
+	 			
+	 			a
+ 		)
+ 		WHERE rn
+ 		BETWEEN #{start} AND #{end}
+ 	</select>
+ 	
+ 	<select id="selectCarInfo" parameterType="long" resultType="Car_General_Info">
+ 		SELECT	*
+ 		FROM	Car_General_Info
+ 		WHERE	sell_num = #{sell_num}
+
+ 	</select>
+ 	
+ 	<select id="selectImage" parameterType="Long" resultType="Car_Image">
+ 		SELECT 	img_url
+	    FROM 	Car_Images
+	    WHERE	sell_num = #{sell_num}
+	    AND		img_url LIKE '%' || '_1.' || '%'
+ 	</select>
+ 	
+ 	<select id="selectReviews" parameterType="Review" resultType="Review">
+ 		SELECT	*
+ 		FROM	Review
+ 		WHERE	approval_num = #{approval_num}
+ 		
+ 	</select>
+ 	
+ 	<select id="selectUser" parameterType="String" resultType="Payment">
+ 		SELECT	*
+ 		FROM	Payment
+ 		WHERE	user_id = #{user_id}
+ 	</select>
+
+ </mapper>

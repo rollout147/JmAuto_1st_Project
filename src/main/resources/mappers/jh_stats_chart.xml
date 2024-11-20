@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.oracle.jmAuto.Stats_Mapper.jh">
+	
+		
+		<!-- 판매자 통계 처음열면 나오는 차트(2024년 매출 그래프) -->
+		<select id="sales_profit_results" resultType="map">	
+			SELECT 
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'Q') AS quarter,
+			    ROUND(SUM(p.TOTAL_PRICE) / 100000000, 2) AS total_price
+			FROM 
+			    car_general_info c JOIN payment p ON c.sell_num = p.sell_num 
+			WHERE 
+			    c.sale = 1 
+		    AND 
+		    	TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') IN ('2024')
+		    AND 
+		    	c.user_id = #{user_id}
+			GROUP BY 
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'Q') 
+			ORDER BY 
+			    quarter          
+		</select>
+		
+			
+		<!-- 관리자 통계 처음열면 나오는 차트(2024년 매출 그래프) -->
+		<select id="admin_sales_profit_results" resultType="map">	
+			SELECT 
+			    TO_CHAR(TO_DATE(approval_date, 'YY/MM/DD'), 'Q') AS quarter,
+			    ROUND(SUM(buz_fee + fee) / 100000000, 2) AS total_price
+			FROM 
+			    payment
+			WHERE 
+		    	TO_CHAR(TO_DATE(approval_date, 'YY/MM/DD'), 'YYYY') IN ('2024')
+			GROUP BY 
+			    TO_CHAR(TO_DATE(approval_date, 'YY/MM/DD'), 'Q') 
+			ORDER BY 
+			    quarter          
+		</select>	
+					
+		<!-- 분기별 실적 조회 -->
+		<select id="quarterly_results" resultType="map">	
+			SELECT 
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'Q') AS quarter,
+			    COUNT(c.SELL_NUM) AS total_sales,
+			    SUM(p.TOTAL_PRICE) AS total_price
+			FROM 
+			    car_general_info c JOIN payment p ON c.sell_num = p.sell_num 
+			WHERE 
+			    c.sale = 1 
+		    AND 
+		    	TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') = #{year}
+		    AND 
+		    	c.user_id = #{user_id}
+			GROUP BY 
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'Q') 
+			ORDER BY 
+			    quarter       
+		</select>
+	
+	
+		<!-- 연도별 실적 조회 -->
+		<select id="annual_performance" resultType="map">		
+			SELECT
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') AS year,
+			    COUNT(c.sell_num) AS total_sales,
+			    SUM(p.TOTAL_PRICE) AS total_price
+			FROM
+			    car_general_info c JOIN payment p ON c.sell_num = p.sell_num
+			WHERE
+			    c.sale = 1 
+			AND 
+				TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') IN ('2020', '2021', '2022', '2023', '2024')
+			AND 
+				c.user_id = #{user_id}  
+			GROUP BY
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY')
+			ORDER BY
+		    	year
+		</select>
+	
+	
+		<!-- 브랜드별 실적 조회 -->
+		<select id="car_type_results" resultType="map">
+		 	SELECT 
+		    	DECODE(c.CAR_TYPE, 
+			        1000, '국내차', 
+			        2000, '해외차', 
+			        3000, '친환경차', 
+		        	'Others') AS CAR_TYPE,
+		    	COUNT(*) AS sales
+		    FROM 
+		        car_general_info c JOIN payment p ON c.sell_num = p.sell_num
+		    WHERE 
+		        TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') = #{year}
+		    AND 
+		    	c.user_id = #{user_id} 
+		    GROUP BY 
+		        c.CAR_TYPE
+		    ORDER BY 
+		         CAR_TYPE	
+		</select>
+	
+	
+		<!-- 차량종류별 실적 조회 -->
+		<select id="brand_type_results" resultType="map">
+	    	SELECT 
+			    DECODE(c.brand, 
+			       	1100, '현대', 
+			        1200, '기아', 
+			        1300, '국내기타', 
+			        1400, '국내기타', 
+			        1500, '국내기타', 
+			        2100, '독일', 
+			        2200, '독일', 
+			        2300, '독일', 
+			        2400, '독일', 
+			        2600, '미국', 
+			        2700, '일본', 
+			        2800, '해외기타', 
+			        'Other') AS BRAND,
+		    	COUNT(*) AS sales
+			FROM 
+			    car_general_info c JOIN payment p ON c.sell_num = p.sell_num
+			WHERE 
+			    TO_CHAR(TO_DATE(p.approval_date, 'YY/MM/DD'), 'YYYY') = #{year}
+			AND 
+				c.user_id = #{user_id} 
+			GROUP BY 
+			    c.BRAND
+			ORDER BY 
+			    BRAND
+		</select>
+	
+	
+		<!-- 재고내역 조회 -->
+		<select id="jago_list" resultType="map">
+			SELECT 
+				CASE 
+			        WHEN c.sale = 1 THEN TO_CHAR(p.approval_date, 'YYYY/MM/DD')
+			        WHEN c.sale = 0 THEN TO_CHAR(c.reg_date, 'YYYY/MM/DD')
+		    	END AS 날짜,
+			  	c.sell_num AS 매물번호,
+				c.car_num AS 차량번호,
+				c.model AS 모델,
+			    CASE 
+			        WHEN c.car_type = 1000 THEN '국내차'
+			        WHEN c.car_type = 2000 THEN '수입차'
+			        WHEN c.car_type = 3000 THEN '친환경차'
+		        	ELSE '기타'
+		    	END AS 차종,
+		    	c.price AS 차량가격,
+		    	CASE 
+			        WHEN c.sale = 1 THEN '출고'
+			        WHEN c.sale = 0 THEN '입고'
+		    	END AS 현재상태
+			FROM 
+		    	car_general_info c LEFT JOIN payment p ON c.sell_num = p.sell_num
+			WHERE 
+			    c.user_id = #{user_id}
+		</select>
+	
+	
+		<!-- 입고내역 조회 -->
+		<select id="receiving_list" resultType="map">
+			SELECT 
+			    TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, 
+			    sell_num,
+			    car_num,
+			    model,
+			    CASE 
+			        WHEN car_type = 1000 THEN '국내차'
+			        WHEN car_type = 2000 THEN '수입차'
+			        WHEN car_type = 3000 THEN '친환경차'
+	        		ELSE '기타' 
+	    		END AS car_type, 
+	    		price,
+	    		'판매중' AS sale
+			FROM 
+	    		car_general_info
+			WHERE 
+			    sale = 0
+			AND 
+				user_id = #{user_id}
+		</select>	
+	
+	
+		<!-- 출고내역 조회 -->
+		<select id="delivery_list" resultType="map">
+			SELECT 
+	    		TO_CHAR(p.approval_date, 'YYYY/MM/DD') AS approval_date,  
+			    c.sell_num,       
+			    c.car_num,          
+			    c.model,               
+	    		CASE 
+			        WHEN c.car_type = 1000 THEN '국내차'
+			        WHEN c.car_type = 2000 THEN '수입차'
+			        WHEN c.car_type = 3000 THEN '친환경차'
+		        	ELSE '기타' 
+	    		END AS car_type,            
+		    	c.price,         
+		    	TO_CHAR(c.reg_date, 'YYYY/MM/DD') AS reg_date,  
+		    	'판매완료' AS sale      
+			FROM 
+	    		car_general_info c JOIN payment p ON c.sell_num = p.sell_num          
+			WHERE 
+	    		c.sale = 1 
+			AND 
+	    		c.user_id = #{user_id}
+		</select>	
+	
+	
+		<!-- 비용내역 조회 -->
+		<select id="cost_list" resultType="map">
+			SELECT 
+			    p.sell_num,
+			    c.car_num,
+			    TO_CHAR(p.approval_date, 'YYYY/MM/DD') AS approval_date,  
+			    p.total_price,
+			    p.price,
+			    p.tax,
+			    p.fee,
+			    p.buz_fee,
+			    p.buz_money
+			FROM 
+			    car_general_info c JOIN payment p ON c.sell_num = p.sell_num
+			WHERE 
+			    c.sale = 1
+			AND 
+			    c.user_id = #{user_id}
+		</select>
+
+
+														       <!-- 여기서부터 관리자 --> 
+		
+		
+		<!-- 아이디 검색창 클릭하면 판매자 아이디가 자동완성됨 -->
+		<select id="findAllData" resultType="string">
+	         SELECT user_id
+	         FROM account
+	    	 ORDER BY user_id DESC
+		</select>
+
+
+		<!-- 검색창 입력시 입력된 값에 맞게 실시간 자동 필터링 -->
+    	<select id="findFilteredData" resultType="string">
+	        SELECT user_id 
+		    FROM account 
+		    WHERE user_id LIKE '%' || #{query} || '%'
+		    ORDER BY user_id DESC
+    	</select>
+
+
+		<!-- 검색창 아이디를 클릭하면 그 아이디에 맞는 판매자 이름을 DB에서 가져옴  -->
+	    <select id="findAccountNameByUserId" resultType="String">
+	        SELECT account_name
+	        FROM account
+	        WHERE user_id = #{userId}
+	    </select>
+
+
+		<!-- 분기별 지불내역 조회 -->
+		<select id="admin_quarter_cost_list" resultType="map">
+			SELECT
+			    TO_CHAR(approval_date, 'Q') AS quarter, 
+			    COUNT(approval_date) AS total_car_sales, 
+			    ROUND(SUM(total_price) / 100000000, 2) AS total_customer_cost,
+			    ROUND(SUM(buz_money) / 100000000, 2) AS total_seller_cost,
+			    ROUND(SUM(tax) / 10000, 2) AS total_tax,  
+			    ROUND(SUM(buz_fee) / 10000, 2) AS total_buz_fee, 
+			    ROUND(SUM(fee) / 10000, 2) AS total_agent_fee,  
+			    ROUND(SUM(buz_fee + fee) / 10000, 2) AS total_sales
+			FROM
+			    payment
+			WHERE
+			    approval_date IS NOT NULL 
+			    AND TO_CHAR(approval_date, 'YYYY') = #{year}
+			    AND buy_type = 1 
+			GROUP BY
+			    TO_CHAR(approval_date, 'Q')  
+			ORDER BY    
+			    quarter
+		</select>
+
+
+
+</mapper> 
+
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.oracle.jmAuto.dto.Mapper.mh">
+	<select id="CarList" resultType="Car_General_Info">
+		SELECT 
+		    car.SELL_NUM,
+		    car.CAR_TYPE,
+		    car.BRAND,
+		    car.MODEL,
+		    car.CAR_NUM,
+		    car.MANU_DATE,
+		    car.MILEAGE,
+		    car.COLOR,
+		    car.FUEL,
+		    car.TRANSMISSION,
+		    car.ACCIDENT,
+		    car.REPOSSESSION,
+		    car.PRICE,
+		    car.SELL_REGI,
+		    car.SELL_CERTI_TAX,
+		    car.SELL_SHINBUN,
+		    car.USER_ID,
+		    car.SALE,
+		    car.REG_DATE,
+		    car.DEL_STATE,
+		    SUBSTR(car.MANU_DATE, 1, 2) || '년' || SUBSTR(car.MANU_DATE, 3, 4) || '월식' AS munu_date_cos,
+		    img.img_url
+		FROM 
+		    Car_General_Info car
+		JOIN 
+		    car_images img ON car.SELL_NUM = img.SELL_NUM
+		where
+			(
+		       img.IMG_URL LIKE '%' || '_1.' || '%'
+	           OR img.IMG_URL IS NULL
+	         )
+	    and 
+	    	del_state = 0 and sale = 0
+
+	</select>
+
+	<select id="CarSearchList" parameterType="map" resultType="Car_General_Info">
+		select * from Car_General_Info
+		where model like '%' || #{keyword} || '%'
+		and   car_type = #{searchType}
+	</select>
+	
+<!-- 	<select id="CarSearchList" parameterType="String" resultType="Car_General_Info">
+        SELECT * FROM Car_General_Info
+        WHERE model LIKE CONCAT('%', #{model}, '%')
+    </select> -->
+    
+    <select id="findSelectOneList" parameterType="String" resultType="Car_General_Info">
+    	select SELL_NUM,
+       		   CAR_TYPE,
+       		   BRAND,
+       		   MODEL,
+       		   CAR_NUM,
+    		   MANU_DATE,
+		       MILEAGE,
+		       COLOR,
+		       FUEL,
+		       TRANSMISSION,
+		       ACCIDENT,
+		       REPOSSESSION,
+		       price,
+		       to_char(price * 10000, 'FM999,999,999,999') as price_fre,
+		       SELL_REGI,
+		       SELL_CERTI_TAX,
+		       SELL_SHINBUN,
+		       USER_ID,
+		       SALE,
+		       REG_DATE,
+		       DEL_STATE,
+       		   substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos,
+       		   TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE('20' || SUBSTR(MANU_DATE, 1, 2) || SUBSTR(MANU_DATE, 3, 2), 'YYYYMM')) / 12) AS YEARS_PASSED,
+    		   MOD(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE('20' || SUBSTR(MANU_DATE, 1, 2) || SUBSTR(MANU_DATE, 3, 2), 'YYYYMM'))), 12) AS MON_PASSED,
+    		   to_char(price * 0.10 * 10000, 'FM999,999,999,999') as Tax,
+    		   to_char(((price * 10000) * 0.05) / 2, 'FM999,999,999,999') as agency_fee,
+    		   TO_CHAR((price + PRICE * 0.10 + ((PRICE * 0.05) / 2)) * 10000, 'FM999,999,999,999') as sum_price
+		from   Car_General_Info
+    	where  sell_num = #{sellNumInt}
+    	and    del_state = 0 and sale = 0
+    </select>
+    
+    <select id="autocomplete" parameterType="map" resultType="map">
+    	select Sell_num,
+    		   model
+    	from   car_general_info
+    	where  model Like '%' || #{value} || '%'
+    	and    car_type = #{searchType}
+    	and    del_state = 0 and sale = 0
+    </select>
+    
+    <select id="selImgList" parameterType="String" resultType="Car_Image">
+    	select img_url
+    	from   car_images
+    	where  sell_num = #{sellNum}
+    </select>
+</mapper>

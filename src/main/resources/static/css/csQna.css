@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+body{
+	background-color: #fafafa;
+	font-family: 'Pretendard';
+}
+
+th {
+	display: flex;
+	width: 100px;
+	padding: 0 20px;
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+td {
+	width: 600px;
+}
+
+hr {
+	border-bottom: 1px;
+	border-left: 0px;
+	border-right: 0px;
+	border-width: 2px;
+	background: #000;
+}
+
+/* 안내문 */
+
+.notice {
+	color: #b9b9b9;
+	font-size: 15px;
+}
+
+.deny {
+	color: #b9b9b9;
+	font-size: 11px;	
+}
+
+
+
+.clsDefault, .clsDefault {
+	color: #d0d0d0;
+}
+
+/* 박스 크기 */
+input {
+	display: flex;
+}
+
+.title {
+	width: 98%;
+}
+
+.content {
+	width: 98%;
+	height: 300px;
+}
+
+.button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+span > a {
+	margin: 15px 20px;
+}
+
+button {
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	padding: 17px;
+}
+
+.img-submit {
+	width: 136px;
+	height: 35px;
+}
+
+.img-cancel {
+	width: 136px;
+	height: 35px;
+}

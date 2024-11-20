@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Pretendard';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+.header_continer {
+    position: relative; /* No fixed position, it will scroll naturally */
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Still higher than the menu */
+}
+
+.menu_continer {
+    position: fixed;
+    top: 0; /* Stays fixed at the top */
+    z-index: 1000; /* Lower than the header */
+    height: 100vh; /* Full viewport height */
+}
+
+.manager_container {
+	display: grid;
+	grid-template-columns: minmax(auto, 1320px);
+	justify-content: center;
+	max-width: 100%;
+	margin: 0px auto;
+	background-color: #f7f7f7;
+	height: auto;
+	
+	
+}
+
+.manager_header {
+	display: flex;
+	margin: 20px 0;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.manager_header_h1{
+	font-size: 24px;
+	font-weight: 550;
+}
+
+.manager_header_gene {
+	display: flex;
+	background-color: #ff4714;
+	color: #fdfdfd;
+	width: 100%;
+	max-width: 100px;
+	height: 35px;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+	transition: background-color 0.3s ease;
+}
+
+.manager_header_gene_a{
+	font-size: 14px;
+	position: absolute;
+	font-weight: bold;
+	
+}
+
+.manager_header_gene:hover {
+	display: flex;
+	background-color: #323232;
+	color: #fdfdfd;
+	width: 100%;
+	max-width: 100px;
+	height: 35px;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+}
+
+.manager_CS_list {
+	background-color: #fdfdfd;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+	height: auto;
+	margin: 0 0 40px;
+}
+
+.manager_CS_table {
+	padding: 0 20px 5px;
+}
+
+.manager_CS_table tr {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	min-width: 1280px;
+	align-items: center;
+}
+
+.manager_CS_table td {
+	color: #323232;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.tr-1 {
+	margin: 20px 0;
+}
+
+.tr-2{
+	border-top: 0.4px solid #e2e8ee; 
+	padding: 20px 0;
+	cursor: pointer;
+}
+
+
+.col-1 { width: 120px;  text-align: center; } /* 분류 */
+.col-2 { width: 120px; text-align: center; } /* 작성자 */
+.col-3 { width: 600px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } /* 제목 */
+.col-4 { width: 120px; text-align: center; } /* 문의제목 */
+.col-5 { width: 160px; text-align: center; }  /* 문의날짜 */
+.col-6 { width: 100px; height:auto; text-align: center; display: flex; justify-content: center;} /* 답변여부 */
+
+.manager_CS_table_th {
+	color: #999999;
+	font-weight: 800;
+}
+
+.faq_del_state_back1 {
+	background-color: #ff4714;
+	height: 25px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.faq_del_state1{
+	font-size: 12px;
+	color: #fdfdfd;
+	margin: 4px;
+	position: absolute;
+}
+
+
+/* 삭제시 */
+.faq_del_state_back2 {
+	background-color: #5B4A80;
+	height: 25px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.faq_del_state2{
+	font-size: 12px;
+	color: #fdfdfd;
+	margin: 4px;
+	position: absolute;
+}
+
+.but_images {
+	width: 100%;
+	max-width: 21px;
+	height: auto;
+	cursor: pointer;
+}
+
+.but_background{
+	background: none;
+	border: none;
+}
+
+
+
+

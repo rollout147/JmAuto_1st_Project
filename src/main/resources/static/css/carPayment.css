@@ -1,0 +1,496 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular'; /* 폰트만 지정 */
+}
+
+table {
+	margin-top: 30px;
+}
+
+
+#header{
+	text-align: center;
+	font-weight: 700;
+	line-height: 400%;
+}
+
+#pageTitle{
+	font-size: 40px;	
+}
+
+#intro{
+	font-size: 28px;
+	font-weight: bold;
+}
+
+
+#title{
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 780px 540px;
+	grid-template-rows: minmax(1500px);
+	margin: 0px;	
+	justify-content: center;
+	padding: 0 20px;
+	max-width: 100%;
+	background-color: #ffffff;
+
+}
+
+.item:nth-child(1) { 
+	grid-column: 1 / 2;
+	margin-left: 300px;
+}
+
+.item:nth-child(2) { 
+	grid-column: 2 / 3;
+}
+
+
+
+#carInfo{
+	border-top: 1px solid black;
+		border-top-width: 3px;
+	border-bottom: 1px solid #d3d3d3;
+	text-align: center;
+	border-left: 0;
+	border-right: 0;
+	border-collapse: collapse;
+}
+
+#carInfoLabelLeft {
+	width: 250px;
+	height: 30px;
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+#carInfoLabelRight {
+	width: 500px;
+	height: 30px;
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+#carInfoModel{
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+#carInfoDetail{
+	font-size: 14px;
+	text-align: center;
+	vertical-align: center;
+	color: #808080;
+}
+
+
+#buyer{
+	width: 750px;
+	height: 250px;
+	border: 2px solid;
+	border-color: #d3d3d3;
+	padding: 20px;
+	vertical-align: center;
+}
+
+
+#buyer .buyerInput {
+	font-size: 15px;
+	padding-left: 15px;
+	height: 30px;
+	width: 500px;
+	border-color: #d3d3d3
+}
+
+
+#buyer #buyerRow1{
+	height: 100px;
+	vertical-align: bottom;
+}
+
+#buyer .tableLeftColumn{
+ 	width: 150px;
+ 	font-size: 15px;
+	font-weight: bold;
+	vertical-align: center;
+	padding-left: 15px;
+ }
+
+#buyer .innerLine {
+	width: 100%;
+	margin-left : auto;
+  	margin-right : auto;
+  	margin-top: 10px;
+  	margin-bottom: 30px;
+}
+
+
+#oder{
+	width: 750px;
+	height: 500px;
+	border: 2px solid;
+	border-color: #d3d3d3;
+	padding: 20px;
+	vertical-align: center;
+}
+
+#oder .innerLine {
+	width: 100%;
+	margin-left : auto;
+  	margin-right : auto;
+  	margin-top: 10px;
+  	margin-bottom: 30px;
+}
+
+#oder .tableLeftColumn{
+ 	width: 150px;
+ 	font-size: 15px;
+	font-weight: bold;
+	vertical-align: center;
+	padding-left: 15px;
+ }
+
+#oderRow1{
+	height: 100px;
+	vertical-align: bottom;
+}
+
+#oderRow2 #postcodeButton:disabled  {
+	width: 150px;
+	height: 30px;
+	font-size: 15px;
+	background-color: #d3d3d3;
+	cursor: not-allowed;
+}
+
+#oderRow2 #postcodeButton{
+	width: 150px;
+	height: 30px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-size: 15px;
+	border: none;
+	cursor: pointer;
+}
+
+
+#oderRow2 input, #oderRow4 input, #oderRow5 input, #oderRow6 input {
+	font-size: 15px;
+	padding-left: 15px;
+	height: 30px;
+	width: 238px;
+	border-color: #d3d3d3
+}
+
+
+#oderRow3 input {
+	font-size: 15px;
+	padding-left: 15px;
+	height: 30px;
+	width: 500px;
+	border-color: #d3d3d3
+}
+
+#oderRow5 #upload-name {
+    display: inline-block;
+    padding-left: 20px;
+    width: 300px;
+    height: 30px;
+    padding: 0px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    color: #999999;
+}
+
+#oderRow5 label {
+    display: inline-block;
+    padding-top: 5px;
+    text-align:center;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #FF4714;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+#oderRow5 #insureFileTitle{
+ 	width: 150px;
+ 	font-size: 15px;
+	font-weight: bold;
+	vertical-align: top;
+	padding-top: 25px;
+	padding-left: 15px;
+ }
+
+#oderRow5 #insureFile {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+#oderRow5 .insureFileCaption {
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px;
+	line-height: 120%;
+}
+
+#paperWorkDiv{
+	margin-top: 30px;
+	width: 745px;
+	height: 200px;	
+	border: 2px solid #d3d3d3;
+	
+	
+}
+
+.paperWorkCell{
+	width: 250px;
+	font-size: 14px;
+	color: #939393;
+	cursor: pointer;
+	text-align: center;
+}
+
+#sellerInfoTitle{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 30px;
+	text-align: left;
+}
+
+#sellerImage{
+	width: 150px;
+    height: 150px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+#sellerImageFile{
+	width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+#sellerInfoDetail{
+	line-height: 250%;
+}
+
+#sellerInfoName{
+	font-size: 25px;
+	font-weight: bold;
+	padding-left: 10px;
+	text-align: left;
+}
+
+#sellerInfoComp{
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 10px;
+	text-align: left;
+}
+
+#sellerInfoTele{
+	font-size: 30px;
+	font-weight: bold;
+	color: #FF4714;
+	padding-left: 10px;
+	text-align: left;
+}
+
+#sellerMap {
+	 width:500px;
+	 height:300px;
+	 margin: 20px;
+
+}
+
+.sellerInfoLinkCell{
+	 width:175px;
+	 height:140px;
+	 text-align: center;
+	 align-items: center;	 
+}
+
+.sellerInfoLinkCell img{
+	 width:100px;
+	 height:100px;
+	 margin-bottom: 15px;
+}
+
+.sellerInfoLinkCaption{
+	font-size: 20px;
+	font-weight: 900;
+	color: #323232;
+	text-align: center;
+	line-height: 160%;
+}
+
+.sellerInfoLinkCaptionHref{
+	font-size: 20px;
+	font-weight: 900;
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#paymentInfoTable{
+	width:530px;
+	border: 2px solid #d3d3d3;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#paymentInfoTele{
+	font-size: 40px;
+	font-weight: bold;
+	color: #FF4714;
+}
+
+#paymentInfoTable .innerLine {
+	width: 90%;
+	border: 2px solid;
+	border-color: #d3d3d3;	
+	margin-left : auto;
+  	margin-right : auto;
+  	margin-top: 10px;
+  	margin-bottom: 30px;
+}
+
+#paymentInfoCarName {
+	font-size: 20px;
+	font-weight: 900;
+	color: #323232;
+	text-align: center;
+	line-height: 180%;
+}
+
+#paymentInfoCarDetail {
+	font-size: 14px;
+	font-weight: 500;
+	color: #d3d3d3;
+	text-align: center;
+	margin-top: 20px;
+  	margin-bottom: 100px;
+}
+
+#paymentSumTitle {
+	text-align: left;
+	width: 200px;
+	height: 120px;
+	font-size: 25px;
+	font-weight: bold;
+	color: #323232;
+	padding-left: 30px;
+}
+
+#paymentSumAmount {
+	text-align: right;
+	width: 330px;
+	height: 120px;
+	font-size: 25px;
+	font-weight: bold;
+	color: #FF4714;
+	padding-right: 30px;
+}
+
+.paymentSumLeft {
+	text-align: left;
+	width: 200px;
+	height: 80px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #939393;
+	padding-left: 30px;
+	
+}
+
+.paymentSumRight {
+	text-align: right;
+	width: 330px;
+	height: 80px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #323232;
+	padding-right: 30px;
+}
+
+.paymentSumPrivate {
+	text-align: center;
+	width: 265px;
+	height: 50px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #939393;	
+	align-items: baseline;
+}
+
+#payButton {
+	text-align: center;
+}
+
+#payButton #btn-kakao {
+	width: 320px;
+	height: 50px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-size: 16px;
+	font-weight: 900;
+	border: none;
+	cursor: pointer;
+	margin: 5px;
+	margin-top: 30px;
+}
+
+#payButton #btn-cancel {
+	width: 320px;
+	height: 50px;
+	background-color: #FDFDFD;
+	color: #FF4714;
+	font-size: 16px;
+	font-weight: 900;
+	border: 2px solid #FF4714;
+	cursor: pointer;
+	margin: 5px;
+}
+
+ 
+/* clear:both; -> float을 이용하여 컬럼을 나눈경우 float속성의 해제가 필요함. */
+
+ #footer {
+	clear: both;
+	width: 100%;
+	align-items: center;
+    position: relative;
+    transform: translatY(-100%);
+    z-index: 1;
+}
+
+#kakaoTalk{
+	position: relative;
+    z-index: 10;
+    bottom: -800px;
+}

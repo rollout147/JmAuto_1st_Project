@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JmAutoApplication<jmAuto>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.oracle.jmAuto.JmAutoApplication",
+            "projectName": "jmAuto",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

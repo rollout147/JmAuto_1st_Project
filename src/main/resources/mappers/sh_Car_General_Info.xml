@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.jmAuto.dto.mapper.sh">
+
+	<select id="keywordSearch" parameterType="Car_General_Info" resultType="Car_General_Info">
+	SELECT *
+	FROM(
+   		SELECT ROWNUM rn, a.*
+    		FROM(
+           		SELECT  c.* , u.user_name, u.user_addr1  , co.CONTENT, img.img_url
+           				,substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos
+                   FROM   car_general_info c 
+                   JOIN user_table u 
+                   ON c.USER_ID = u.USER_ID
+                   JOIN COMMON co 
+                   ON c.BRAND = co.BRAND
+                   LEFT JOIN CAR_IMAGES img
+                   ON c.sell_num = img.sell_num
+                   WHERE (
+                    c.model LIKE '%' || #{keyword} || '%'
+                    or c.COLOR LIKE '%' || #{keyword} || '%'
+                    or c.TRANSMISSION LIKE '%' || #{keyword} || '%'
+                    or c.CAR_NUM LIKE '%' || #{keyword} || '%'
+                    or u.user_addr1 LIKE '%' || #{keyword} || '%'
+                    or u.user_name LIKE '%' || #{keyword} || '%'
+                    or co.CONTENT LIKE '%' || #{keyword} || '%'
+                    )
+                   AND c.SALE = 0
+                   AND c.del_state = 0
+                   AND u.del_state = 0
+                   <if test="searchType != null and searchType != ''">
+                   	AND c.car_type = #{searchType} 
+                   </if>
+                  AND (
+                    img.IMG_URL LIKE '%' || '_1.' || '%'
+                    OR img.IMG_URL IS NULL
+                    )
+               ORDER BY c.REG_DATE desc
+               )a
+       )
+	WHERE rn BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="searchListTotal" parameterType="map" resultType="int">
+	SELECT  COUNT(*)
+	FROM   car_general_info c 
+	JOIN user_table u 
+	ON c.USER_ID = u.USER_ID
+	JOIN COMMON co 
+	ON c.BRAND = co.BRAND
+	WHERE (
+		c.model LIKE '%' || #{keyword} || '%'
+		or c.COLOR LIKE '%' || #{keyword} || '%'
+		or c.TRANSMISSION LIKE '%' || #{keyword} || '%'
+		or c.CAR_NUM LIKE '%' || #{keyword} || '%'
+		or u.user_addr1 LIKE '%' || #{keyword} || '%'
+		or u.user_name LIKE '%' || #{keyword} || '%'
+		or co.CONTENT LIKE '%' || #{keyword} || '%'
+		)
+	AND c.SALE = 0
+    AND c.del_state = 0
+    AND u.del_state = 0
+    <if test="searchType != null and searchType != ''">
+    	AND c.car_type = #{searchType} 
+    </if>
+    
+	</select>
+	
+	<select id="CarTot" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM car_general_info c
+		JOIN user_table u 
+		ON c.USER_ID = u.USER_ID
+        WHERE CAR_TYPE = #{car_type}
+        AND c.SALE = 0
+        AND c.del_state = 0
+        AND u.del_state = 0
+	</select>
+	
+	<select id="car_type_Car" parameterType="Car_General_Info" resultType="Car_General_Info">
+		SELECT *
+		FROM(
+    		SELECT ROWNUM rn, a.*
+     		FROM(
+            	SELECT c.* , img.img_url
+            			,substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos
+            	FROM car_general_info c
+            	LEFT JOIN CAR_IMAGES img
+                ON c.sell_num = img.sell_num
+                JOIN user_table u 
+				ON c.USER_ID = u.USER_ID
+            	WHERE (
+            		CAR_TYPE = #{car_type}
+            		)
+            	AND c.SALE = 0
+		        AND c.del_state = 0
+		        AND u.del_state = 0
+            	AND (
+                    img.IMG_URL LIKE '%' || '_1.' || '%'
+                    OR img.IMG_URL IS NULL
+                    )
+                ORDER BY c.REG_DATE desc
+            )a
+        )
+		WHERE rn BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="detailSearch" parameterType="map" resultType="Car_General_Info">
+	SELECT *
+		FROM(
+    		SELECT ROWNUM rn, a.*
+     		FROM(
+            		SELECT  c.* , u.user_name, u.user_addr1 , co.CONTENT, img.img_url
+            				,substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos
+                    FROM   car_general_info c 
+                    JOIN user_table u 
+                    ON c.USER_ID = u.USER_ID
+                    JOIN COMMON co 
+                    ON c.BRAND = co.BRAND
+	            	LEFT JOIN CAR_IMAGES img
+	                ON c.sell_num = img.sell_num
+                    WHERE( 
+	                   c.model LIKE '%' || #{model_name} || '%'
+	                   and( 
+	                       c.CAR_NUM LIKE '%' || #{keyword} || '%'
+	                       or c.TRANSMISSION LIKE '%' || #{keyword} || '%'
+	                       or c.COLOR LIKE '%' || #{keyword} || '%'
+	                       or u.user_addr1 LIKE '%' || #{keyword} || '%'
+	                       or u.user_name LIKE '%' || #{keyword} || '%'
+	                       or co.CONTENT LIKE '%' || #{keyword} || '%'
+	                       )
+	                      )
+                    AND c.PRICE BETWEEN #{min_price}
+                    and #{max_price}
+                    AND c.SALE = 0
+			        AND c.del_state = 0
+			        AND u.del_state = 0
+                    AND (
+	                    img.IMG_URL LIKE '%' || '_1.' || '%'
+	                    OR img.IMG_URL IS NULL
+	                    )
+	                ORDER BY c.REG_DATE desc
+                )a
+        )
+		WHERE rn BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="detailSearchCartot" parameterType="map" resultType="int">
+		SELECT  COUNT(*)
+        FROM   car_general_info c 
+        JOIN user_table u 
+        ON c.USER_ID = u.USER_ID
+        JOIN COMMON co 
+        ON c.BRAND = co.BRAND
+        WHERE c.model LIKE '%' || #{model_name} || '%'
+        and( 
+            c.CAR_NUM LIKE '%' || #{keyword} || '%'
+            or c.TRANSMISSION LIKE '%' || #{keyword} || '%'
+            or c.COLOR LIKE '%' || #{keyword} || '%'
+            or u.user_addr1 LIKE '%' || #{keyword} || '%'
+            or u.user_name LIKE '%' || #{keyword} || '%'
+            or co.CONTENT LIKE '%' || #{keyword} || '%'
+            )
+        AND c.PRICE BETWEEN #{min_price}
+        and #{max_price}
+        AND c.SALE = 0
+        AND c.del_state = 0
+        AND u.del_state = 0
+	</select>
+	
+	<select id="chkBrand" parameterType="map" resultType="Car_General_Info">
+		SELECT *
+		FROM(
+    		SELECT ROWNUM rn, a.*
+     		FROM(
+            	SELECT c.*, img.img_url
+            			,substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos
+				FROM car_general_info c
+            	LEFT JOIN CAR_IMAGES img
+                ON c.sell_num = img.sell_num
+                JOIN user_table u 
+        		ON c.USER_ID = u.USER_ID
+				WHERE (
+					BRAND = #{brand}
+					)
+				AND c.SALE = 0
+		        AND c.del_state = 0
+		        AND u.del_state = 0
+				AND (
+                    img.IMG_URL LIKE '%' || '_1.' || '%'
+                    OR img.IMG_URL IS NULL
+                    )
+                ORDER BY c.REG_DATE desc
+		        )a
+        )
+		WHERE rn BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="chkBrandTotal" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM car_general_info c
+		JOIN user_table u 
+        ON c.USER_ID = u.USER_ID
+		WHERE BRAND = #{brand}
+		AND c.SALE = 0
+        AND c.del_state = 0
+        AND u.del_state = 0
+	</select>
+	
+	<select id="detailBTotal" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM car_general_info c
+		JOIN user_table u 
+        ON c.USER_ID = u.USER_ID
+		WHERE BRAND = #{brand}
+		AND FUEL LIKE #{fuel}
+		AND TO_NUMBER(SUBSTR(manu_date, 1, 2)) BETWEEN #{manu_date1} AND #{manu_date2}
+		AND c.SALE = 0
+        AND c.del_state = 0
+        AND u.del_state = 0
+	</select>
+	
+	<select id="detailB" parameterType="map" resultType="Car_General_Info">
+		SELECT *
+		FROM(
+    		SELECT ROWNUM rn, a.*
+     		FROM(
+            		SELECT c.*, img.img_url
+            				,substr(manu_date,1,2) || '년' || substr(manu_date,3,4) || '월식' munu_date_cos
+					FROM car_general_info c
+	            	LEFT JOIN CAR_IMAGES img
+	            	ON c.sell_num = img.sell_num
+	            	JOIN user_table u 
+        			ON c.USER_ID = u.USER_ID
+					WHERE (
+						BRAND = #{brand}
+						AND FUEL LIKE #{fuel}
+						AND TO_NUMBER(SUBSTR(manu_date, 1, 2)) BETWEEN #{manu_date1} AND #{manu_date2}
+						)
+						AND c.SALE = 0
+				        AND c.del_state = 0
+				        AND u.del_state = 0
+						AND (
+                            img.IMG_URL LIKE '%' || '_1.' || '%'
+                            OR img.IMG_URL IS NULL
+                            )
+                        ORDER BY c.REG_DATE desc
+                )a
+        )
+		WHERE rn BETWEEN #{start} and #{end}
+	</select>
+	
+	
+	
+	
+	<insert id="InputCar" parameterType="map">
+		INSERT INTO car_general_info(
+	    SELL_NUM, CAR_TYPE, BRAND, MODEL, CAR_NUM, MANU_DATE, MILEAGE,
+	    COLOR, FUEL, TRANSMISSION, ACCIDENT, REPOSSESSION, PRICE, SELL_REGI,
+	    SELL_CERTI_TAX, SELL_SHINBUN, USER_ID, SALE, REG_DATE, DEL_STATE
+	    )
+	    VALUES(
+	        sell_num_seq.nextval, #{car_type}, #{brand}, #{model}, #{car_num}, #{manu_date}, #{mileage},
+	        #{color}, #{fuel}, #{transmission}, #{accident}, #{repossession}, #{price}, #{sell_regiUrl},
+	        #{sell_certi_taxUrl}, #{sell_shinbunUrl}, #{user_id}, 0, SYSDATE, 0
+	        )
+	</insert>
+	
+	<insert id="InputCarMainImg" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL 
+		    )
+		    VALUES(
+		    CAR_IMG_NUM.nextval, sell_num_seq.currval,#{savedMainName}, #{mainUrl} 
+		    )
+	</insert>
+	
+	<insert id="InputCarImg_1" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL 
+		    )
+		    VALUES(
+		    CAR_IMG_NUM.nextval, sell_num_seq.currval,#{savedImg1Name}, #{Img1Url}
+		    )
+	</insert>
+
+	<insert id="InputCarImg_2" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL
+		    )
+		    VALUES(
+		    CAR_IMG_NUM.nextval, sell_num_seq.currval,#{savedImg2Name}, #{Img2Url}
+		    )
+	</insert>
+	
+	<insert id="InputCarImg_3" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL
+		    )
+		    VALUES(
+		   CAR_IMG_NUM.nextval, sell_num_seq.currval,#{savedImg3Name}, #{Img3Url}
+		    )
+	</insert>
+	
+	<insert id="InputCarImg_4" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL
+		    )
+		    VALUES(
+		    CAR_IMG_NUM.nextval, sell_num_seq.currval,#{savedImg4Name}, #{Img4Url}
+		    )
+	</insert>
+	
+	<select id="carNumChk" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+        FROM car_general_info
+        WHERE CAR_NUM LIKE #{car_num}
+	</select>
+	
+	<select id="getCarNum" parameterType="map" resultType="Car_General_Info">
+		SELECT sell_num, car_num
+        FROM car_general_info
+        WHERE car_num IS NOT NULL
+        ORDER BY sell_num desc
+	</select>
+	
+	<insert id="insertImgUrl" parameterType="map">
+		INSERT INTO CAR_IMAGES (
+		    IMG_NUM, SELL_NUM,IMG_NAME, IMG_URL
+		    )
+		    VALUES(
+		    CAR_IMG_NUM.nextval, #{sell_num},#{fileName}, #{url}
+		    )
+	</insert>
+	
+	
+	
+
+	<select id="allCarTotal" resultType="int">
+		SELECT COUNT(*)
+        FROM car_general_info
+	</select>
+
+	<select id="allCar" resultType="Car_General_Info" parameterType="map">
+		SELECT *
+		FROM (
+		    SELECT ROWNUM rn, a.*
+		    FROM (
+		        SELECT c.*, img.img_url,
+		               CONCAT(SUBSTR(manu_date, 1, 2), '년') || CONCAT(SUBSTR(manu_date, 3, 4), '월식') as munu_date_cos
+		        FROM car_general_info c
+		        LEFT JOIN CAR_IMAGES img ON c.sell_num = img.sell_num
+		        JOIN user_table u ON c.USER_ID = u.USER_ID
+		        WHERE img.IMG_URL LIKE '%' || '_1.' || '%' OR img.IMG_URL IS NULL
+                  ORDER BY c.REG_DATE DESC
+		    ) a
+		)
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="Asearch" resultType="Car_General_Info" parameterType="map">
+		SELECT *
+		FROM (
+		    SELECT ROWNUM rn, a.*
+		    FROM (
+		        SELECT *
+				FROM  car_general_info
+				WHERE model LIKE '%'||#{keyword}||'%'
+				      OR user_id LIKE '%'||#{keyword}||'%'
+				      ORDER BY REG_DATE DESC
+		    ) a
+		)
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<update id="carDeactive" parameterType="String">
+		update car_general_info
+        set del_state = 1
+        where sell_num = #{sellNum}
+	</update>
+	
+	<update id="carActive" parameterType="String">
+		update car_general_info
+        set del_state = 0
+        where sell_num = #{sellNum}
+	</update>
+	
+	<select id="AsearchTot" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM  car_general_info
+		WHERE model LIKE '%'||#{keyword}||'%'
+		      OR user_id LIKE '%'||#{keyword}||'%'
+		      ORDER BY REG_DATE DESC
+	</select>
+	
+	
+	
+</mapper>

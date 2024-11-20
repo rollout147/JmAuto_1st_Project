@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.jmAuto.dto.mapper.sh">
+
+	<select id="reviewTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM expert_review
+	</select>
+	
+	<select id="allReview" resultType="expert_review" parameterType="map">
+		SELECT *
+	    FROM (
+	        SELECT ROWNUM AS rn, a.*, TO_CHAR(write_date, 'YYYY-MM-DD') AS formatted_write_date
+	        FROM expert_review a
+	    )
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="reviewSearch" resultType="expert_review" parameterType="map">
+		SELECT *
+		FROM (
+		    SELECT ROWNUM AS rn, 
+		    		a.*,
+		            TO_CHAR(a.write_date, 'YYYY-MM-DD') AS formatted_write_date
+		    FROM (
+		        SELECT *
+		        FROM expert_review
+		        WHERE user_id LIKE '%' || #{keyword} || '%'
+		        ORDER BY write_date DESC
+		    ) a
+		)
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<update id="reviewDeactive" parameterType="String">
+		update expert_review
+        set del_state = 1
+        where expert_review_num = #{review_num}
+	</update>
+	
+	<update id="reviewActive" parameterType="String">
+		update expert_review
+        set del_state = 0
+        where expert_review_num = #{review_num}
+	</update>
+	
+	<select id="keywordReviewTotal" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM  expert_review
+		WHERE user_id LIKE '%'||#{keyword}||'%'
+	</select>
+
+
+</mapper>

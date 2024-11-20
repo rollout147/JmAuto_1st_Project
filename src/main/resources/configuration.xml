@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="VARCHAR"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="User_Table" type="com.oracle.jmAuto.dto.User_Table" />
+		<typeAlias alias="Business" type="com.oracle.jmAuto.dto.Business" />
+		<typeAlias alias="Account" type="com.oracle.jmAuto.dto.Account" />
+		<typeAlias alias="Certified"	type="com.oracle.jmAuto.dto.Certified" />
+		<typeAlias alias="Expert_Review" type="com.oracle.jmAuto.dto.Expert_Review" />
+		<typeAlias alias="Car_General_Info" type="com.oracle.jmAuto.dto.Car_General_Info" />
+		<typeAlias alias="Review" type="com.oracle.jmAuto.dto.Review" />
+		<typeAlias alias="ReviewPaymentCarInfo" type="com.oracle.jmAuto.dto.ReviewPaymentCarInfo" />
+		<typeAlias alias="Faq" type="com.oracle.jmAuto.dto.Faq" />
+		<typeAlias alias="Qna" type="com.oracle.jmAuto.dto.Qna" />
+		<typeAlias alias="Notice_Table" type="com.oracle.jmAuto.dto.Notice_Table" />
+		<typeAlias alias="Zzim" type="com.oracle.jmAuto.dto.Zzim"/>
+		<typeAlias alias="Note" type="com.oracle.jmAuto.dto.Note"/>
+		<typeAlias alias="Payment" type="com.oracle.jmAuto.dto.Payment"/>
+		<typeAlias alias="Car_Image" type="com.oracle.jmAuto.dto.Car_Image"/>
+		<typeAlias alias="FullUserInfo" type="com.oracle.jmAuto.dto.FullUserInfo"/>
+		<typeAlias alias="PayList" type="com.oracle.jmAuto.dto.PayList"/>
+		<typeAlias alias="ExpList" type="com.oracle.jmAuto.dto.ExpList"/>
+		<typeAlias alias="ReviewListInfo" type="com.oracle.jmAuto.dto.ReviewListInfo"/>
+		<typeAlias alias="Seller_Info" type="com.oracle.jmAuto.dto.Seller_Info"/>
+	</typeAliases>
+</configuration> 
