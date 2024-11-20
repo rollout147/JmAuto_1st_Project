@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+ 	<select id="zzokzi" parameterType="String" resultType="Note">
+ 		select *
+ 		from Note
+ 		where (note_sd=#{user_id}
+ 		or note_rd=#{user_id})
+ 		and del_state = 0
+ 		
+ 	</select>
+ 	
+ 	<select id="zzokziList" parameterType="map" resultType="Note">
+ 		select *
+ 		from Note
+ 		where (note_sd=#{user_id} or note_rd=#{user_id})
+ 		and note_num=#{note_num}
+ 		and del_state =0
+ 		
+ 	</select>
+ 
+ 	<update id="deleteNote" parameterType="int">
+ 		update note
+ 		set del_state =1
+ 		where note_num=#{note_num}
+ 	
+ 	</update>
+ 	
+ 	<insert id="noteDabjang" parameterType="map">
+ 		insert into Note(
+ 			sell_num, 
+ 			note_num, 
+ 			note_sd, 
+ 			note_rd, 
+ 			note_title, 
+ 			note_content, 
+ 			note_date,
+ 			del_state, 
+ 			send_state
+ 			)
+ 		values(
+ 			#{sell_num, jdbcType=BIGINT},
+ 			note_seq.NEXTVAL,
+ 			#{note_sd}, 
+ 			#{note_rd},
+ 			#{note_title}, 
+ 			#{note_content}, 
+ 			sysdate,
+ 			0,
+ 			1
+ 			)
+ 	</insert>
+ 	
+ 	<select id="ReceivedNotes" parameterType="String" resultType="Note">
+ 		select *
+ 		from note
+ 		where note_rd = #{user_id}
+ 		and del_state = 0
+ 	</select>
+ 	
+ 	<select id="sendNotes" parameterType="String" resultType="Note">
+ 		select *
+ 		from note
+ 		where note_sd =#{user_id}
+ 		and del_state =0
+ 	</select>
+ 	
+ 	<insert id="sending_note" parameterType="note">
+         INSERT into note (
+            SELL_NUM,
+            NOTE_NUM,
+            NOTE_SD,
+            NOTE_RD,
+            NOTE_TITLE,
+            NOTE_CONTENT,
+            NOTE_DATE,
+            DEL_STATE,
+            SEND_STATE
+                         )
+         VALUES ( 
+            #{sell_num},
+            note_seq.nextval,
+            #{note_sd},
+            #{note_rd},
+            #{note_title},
+            #{note_content},
+            sysdate,
+            0,
+            0
+              )
+     </insert>
+ 
+
+	
+</mapper> 

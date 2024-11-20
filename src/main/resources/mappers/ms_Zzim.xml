@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+	<select id="findZzim"  parameterType="Zzim" resultType="Zzim">
+		select z.*, c.*, i.*, c.user_id as car_user_id
+		from  zzim z
+		JOIN  car_general_info c on z.SELL_NUM = c.SELL_NUM
+		JOIN  car_images i       on z.SELL_NUM = i.SELL_NUM	
+		where z.user_id=#{user_id}
+		and z.sell_num = c.sell_num
+		and c.del_state = 0
+		AND   i.img_url LIKE '%' || '_1.' || '%'
+	</select>
+	
+	<delete id="deleteZzim" parameterType="map">
+		delete
+		from Zzim
+		where user_id =#{user_id}
+		and sell_num =#{sell_nums}
+	</delete>
+</mapper> 

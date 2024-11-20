@@ -1,0 +1,93 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+
+.header_continer {
+    position: relative; /* No fixed position, it will scroll naturally */
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Still higher than the menu */
+}
+.menu_continer {
+    position: fixed;
+    top: 0; /* Stays fixed at the top */
+    z-index: 1000; /* Lower than the header */
+    height: 100vh; /* Full viewport height */
+}
+
+.body {
+	background-color: #fafafa;
+}
+
+/* 메인 내용 디자인 */
+.successContainer {
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	justify-content: center;
+	text-align: center;
+	padding: 50px 0 50px 0;
+	width: 1320px;
+	margin: 100px 300px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-top: 40px;
+}
+
+.successContainer img {
+	margin: 80px auto 30px auto;
+	width: 140px;
+	height: 140px;	
+}
+
+.successMent {
+	font-size: 30px;
+	font-weight: bold;
+	padding: 20px 0 20px 0;
+}
+
+.sorry {
+	font-size: 20px;
+	padding: 20px 0 40px 0;
+}
+
+/* 문의내역, 돌아가기 버튼 디자인 */
+.successButton {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+}
+
+.successButton a {
+	float: left;
+	background-color: #fdfdfd;
+	border-style:solid;
+	border-width:2px;
+	border-color: #ff4714;
+	color: #070707;
+	text-align: center;
+	margin: 15px;
+	padding: 15px 50px;
+	text-decoration: none;
+	font-size: 25px;
+	font-weight: bold;
+	width: 200px;
+}
+
+/* 버튼에 커서 올렸을때 색*/
+.successButton a:hover {
+  background-color: #ff4714;
+  color: #fdfdfd;
+  font-weight: bold;
+}
+
+/* 버튼을 눌렀을때 변경된 색이 그대로 머물도록 */
+.successButton a.active {
+    background-color: #ff4714; 
+    color: #fdfdfd;
+    font-weight: bold;
+}

@@ -1,0 +1,143 @@
+/* page제목 스타일 */
+#pageTitle {
+	text-align : center;
+	color: #323232;
+	font-size: 30px;
+	font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	text-align: center;
+	align-items: center; 		/* 수평 중앙 정렬 */
+	margin: 0;
+	padding: 0;
+	background-color: #fafafa;
+	font-family: 'Pretendard-Regular';
+}
+
+#full {
+	width: 690;
+	margin-top: 15px;
+	margin-left: 100px;
+	padding: 25px;
+	height: 900px;
+	align-items: center; 		/* 수평 중앙 정렬 */
+	justify-content: center; 	/* 수직 중앙 정렬 */
+	border: 1px solid #dcdcdc;
+}
+
+#intro{
+	width: 480;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+	
+}
+
+#carBasiclInfo {
+	width: 480px;
+}
+
+.carInfoTitle {
+	height: 40px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;	
+}
+
+
+.carInfoLeft {
+	height: 35px;
+	width: 200px;
+	font-size: 16px;
+	font-weight: 900;
+	color: #d3d3d3;
+	text-align: center;	
+}
+
+
+.carInfoRight {
+	height: 35px;
+	width: 280px;
+	font-size: 16px;
+	font-weight: 900;
+	color: #323232;
+	text-align: center;	
+}
+
+
+#paymentInfoTable {
+	width: 400px;
+	margin: 40px;
+	background-color: #dcdcdc;
+}
+
+
+#paymentSumTitle {
+	width: 200px;
+	height: 80px;
+	font-size: 25px;
+	font-weight: bold;
+	color: #323232;
+}
+
+#paymentSumAmount {
+	font-size: 25px;
+	font-weight: bold;
+	color: #FF4714;
+}
+
+.paymentSumLeft {
+	width: 200px;
+	height: 50px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #939393;
+}
+
+.paymentSumRight {
+	width: 280px;
+	height: 50px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #323232;
+}
+
+
+#btnDiv{
+	width: 400px;
+	margin: 40px;
+}
+
+#btn-kakao {
+	width: 320px;
+	height: 50px;
+	background-color: #FF4714;
+	color: #FDFDFD;
+	font-size: 16px;
+	font-weight: 900px;
+	border: none;
+	cursor: pointer;
+	margin: 5px 20px;
+	
+}
+
+#btn-cancel {
+	width: 320px;
+	height: 50px;
+	background-color: #FDFDFD;
+	color: #FF4714;
+	font-size: 16px;
+	font-weight: 900px;
+	border: 2px solid #FF4714;
+	cursor: pointer;
+	margin: 5px 20px;
+}
+

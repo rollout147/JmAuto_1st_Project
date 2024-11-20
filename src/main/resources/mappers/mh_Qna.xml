@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.jmAuto.dto.Mapper.mh">
+	<select id="QnaCount" resultType="int">
+		select count(*)
+		from Qna
+		<if test="keyword != null and keyword != ''">
+        where user_id LIKE '%' || #{keyword} || '%'
+        </if>
+	</select>
+	
+	<select id="QnaCountS" resultType="int">
+		select count(*)
+		from Qna
+	</select>
+	
+	<select id="QnaCountA" resultType="int" parameterType="int">
+		select count(*)
+		from Qna
+		where qna_useyn = #{answerStatus}
+	</select>
+	
+	<select id="PageListQna" resultType="Qna" parameterType="Map">
+		<!-- SELECT * FROM (
+		    SELECT q.*, ROWNUM rnum From (
+		        SELECT * from Qna
+		        ORDER by qna_date desc
+		    ) q
+		    where ROWNUM <= #{endIndex}
+		)
+		where rnum > #{startIndex} -->
+		SELECT * FROM (
+        SELECT q.*, ROW_NUMBER() OVER (ORDER BY qna_date DESC) AS rnum
+        FROM Qna q
+        where 1 = 1
+        <if test="keyword != null and keyword != ''">
+        	AND (q.qna_title LIKE '%' || #{keyword} || '%'
+            OR q.user_id LIKE '%' || #{keyword} || '%')
+        </if>
+		   )
+		   WHERE rnum &gt; #{startIndex} AND rnum &lt;= #{endIndex}
+	</select>
+	
+	<select id="PageListQnaA" resultType="Qna" parameterType="Map">
+		<!-- SELECT * FROM (
+		    SELECT q.*, ROWNUM rnum From (
+		        SELECT * from Qna
+		        ORDER by qna_date desc
+		    ) q
+		    where ROWNUM <= #{endIndex}
+		)
+		where rnum > #{startIndex} -->
+		SELECT * FROM (
+        SELECT q.*, ROW_NUMBER() OVER (ORDER BY qna_date DESC) AS rnum
+        FROM Qna q
+        where 1 = 1
+        	AND qna_useyn = #{answerStatus}
+		   )
+		   WHERE rnum &gt; #{startIndex} AND rnum &lt;= #{endIndex}
+	</select>
+	
+	<update id="submitAnswerList" parameterType="Map">
+		update qna
+		set    ans_content = #{answer},
+			   ans_date = sysdate,
+			   qna_useyn = 1
+		where  qna_num = #{qnaNum}
+		
+	</update>
+	
+	<select id="getUseYnQna" parameterType="int" resultType="int">
+		select qna_useyn
+		from   Qna
+		where  qna_num = #{qnaNum}
+	</select>
+</mapper>

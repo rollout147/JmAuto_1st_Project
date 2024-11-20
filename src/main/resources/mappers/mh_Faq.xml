@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.oracle.jmAuto.FaqMapper.mh">
+ 	<select id="allFaqList"  resultType="Faq">
+ 		SELECT *
+		FROM faq
+		order by faq_date desc
+ 	</select>
+	
+	<select id="selFaqList" resultType="Faq" parameterType="int">
+		select *
+		from faq
+		where faq_num = #{faqNum}
+	</select>
+	
+	<update id="updateFaq" parameterType="Faq">
+		update faq
+		set	   faq_cls = #{faq_cls},
+			   faq_title = #{faq_title},
+			   faq_content = #{faq_content}
+		where  faq_num = #{faq_num}
+	</update>
+	
+	<insert id="insrtFaqList" parameterType="Faq">
+		insert into faq values (FAQ_SEQ.nextval, #{faq_cls}, #{faq_title}, #{faq_content}, sysdate, #{user_id}, 0)
+	</insert>
+	
+	<update id="delFaqList" parameterType="String">
+		update faq
+		set	   del_state = 1
+		where  faq_num = #{faqNum}
+	</update>
+	
+	<update id="exposFaqList" parameterType="String">
+		update faq
+		set	   del_state = 0
+		where  faq_num = #{faqNum}
+	</update>
+ </mapper>

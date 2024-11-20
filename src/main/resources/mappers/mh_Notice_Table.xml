@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.mh">
+	<select id="notList" resultType="Notice_Table">
+		select *			   
+		from   Notice_Table
+		where  del_state = 0
+		order  by notice_date desc
+	</select>
+	
+	<update id="delNotTable" parameterType="String">
+		update notice_table
+		set    del_state = 1
+		where  notice_num = #{noticeNum}
+	</update>
+	
+	<update id="exposNotTable" parameterType="String">
+		update notice_table
+		set    del_state = 0
+		where  notice_num = ${noticeNum}
+	</update>
+	
+	<select id="listTableNot" resultType="Notice_Table">
+		select *			   
+		from   Notice_Table
+		order  by notice_date desc
+	</select>
+	
+	<select id="selListNotTable" resultType="Notice_Table" parameterType="Notice_Table">
+		select *
+		from   Notice_Table
+		where  notice_num = ${notNum}
+	</select>
+	
+	<update id="updateGoginot" parameterType="Notice_Table">
+		update notice_table
+		set    notice_cls = #{notice_cls},
+			   notice_title = #{notice_title},
+			   notice_content = #{notice_content}
+		where  notice_num = #{notice_num}
+	</update>
+	
+	<insert id="InsNoticeList" parameterType="Notice_Table">
+		insert into notice_table(notice_num, notice_cls, notice_title, notice_content, notice_date, user_id, del_state) 
+		values (notice_seq.NEXTVAL, #{notice_cls}, #{notice_title}, #{notice_content}, sysdate, #{user_id}, 0)
+	</insert>
+</mapper> 

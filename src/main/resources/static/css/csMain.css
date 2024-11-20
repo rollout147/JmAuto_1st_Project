@@ -1,0 +1,110 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+body{
+	margin: 0px;
+    padding: 0px;
+    background-color: #fafafa;
+}
+
+.header_continer {
+    position: relative; /* No fixed position, it will scroll naturally */
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Still higher than the menu */
+}
+.menu_continer {
+    position: fixed;
+    top: 0; /* Stays fixed at the top */
+    z-index: 1000; /* Lower than the header */
+    height: 100vh; /* Full viewport height */
+}
+
+.csHeadline {
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	font-family: 'Pretendard';
+	justify-content: space-between;
+	text-align: center;
+	margin: 0 300px 50px 300px;
+	padding: 50px 0 50px 0;
+	width: 1320px;
+}
+
+.csMent {
+	font-size: 15px;
+	padding: 20px 0 40px 0;
+}
+
+.csCenter {
+	font-size: 10px;
+	justify-content: center;
+	text-align: center;
+	background-color: #fdfdfd;
+	margin: 0 auto;
+	width: 1320px;
+	padding: 50px 0 0 0;
+}
+
+.csChoice {
+	font-size:20px;
+	font-weight: bold;
+	margin: 0 auto;
+
+	
+}
+
+.csContainer {
+	display: flex;
+
+}
+
+.csBox {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	width: 40%;
+	height: 40%;
+	padding: 5% ;
+	
+}
+
+.csBox a{
+	display: flex;
+	background-repeat: no-repeat;
+	padding: 100px;
+	margin: 19px 0 19px 0;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.csBox a:hover {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+
+.faqButton {
+	background-image: url("../images/main/자주묻는 질문.png");
+}
+
+.qnaButton {
+	background-image: url("../images/main/신고문의.png");
+}
+
+.noticeButton {
+	background-image: url("../images/main/공지사항.png");
+}
+
+.reviewButton {
+	background-image: url("../images/main/고객후기.png");
+}
+
+.csItem:hover {
+	text-decoration: none;
+
+}
+

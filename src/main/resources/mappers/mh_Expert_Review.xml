@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.oracle.jmAuto.dto.Mapper.mh">
+	<select id="ReviewList" resultType="int">
+		select count(*)
+		from Expert_Review
+	</select>
+	
+	<select id="ListReview" resultType="Expert_Review">
+		select *
+		from Expert_Review
+	</select>
+	
+	<select id="selExp_Revlist" resultType="Expert_Review" parameterType="String">
+		SELECT e.content,
+		 		 e.write_date, 
+		       e.expert_review_num,
+		       c.model 
+		  FROM Expert_Review e 
+		  JOIN car_general_info c 
+		    ON e.sell_num = c.sell_num 
+		 WHERE e.sell_num = #{sellNum}
+	</select>
+</mapper>

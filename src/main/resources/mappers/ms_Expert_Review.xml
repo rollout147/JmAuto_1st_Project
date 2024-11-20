@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+ 
+ 	<select id="expertReview" parameterType="String" resultType="Expert_Review">
+		select DISTINCT e.*, p.total_price
+		from expert_review e left join payment p	
+		on e.expert_review_num = p.expert_review_num
+		where e.expert_review_num IN (
+               				 select p.expert_review_num
+                			 from payment p, user_table u
+                			 where p.user_id = u.user_id
+                  			 and u.user_id = #{user_id}
+                             and expert_review_num IS not NULL
+                   			 )
+        and e.del_state =0
+ 	</select>
+ 	
+ 	<select id="reviewDetail" parameterType="map" resultType="Expert_Review">
+ 		select *
+		from expert_review e
+		where e.sell_num IN(
+         		           	select p.sell_num
+                		    from user_table u, payment p
+ 							where u.user_id = p.user_id
+                    		and u.user_id = #{user_id}
+                    	)
+        and e.expert_review_num = #{expert_review_num}
+ 	</select>
+ 	
+ 	<select id="myExpertReview" parameterType="String" resultType="Expert_Review">
+ 	
+ 	
+ 		select e.*, c.*, i.*
+ 		
+ 		from  expert_review e JOIN  car_general_info c on e.SELL_NUM = c.SELL_NUM
+		JOIN  car_images i on e.SELL_NUM = i.SELL_NUM
+ 		
+ 		where e.user_id =#{user_id}
+		and   c.del_state=0
+		AND   i.img_url LIKE '%' || '_1.' || '%'
+ 		
+ 		
+ 	</select>
+ 	
+ 	<select id="myExpertReviewDetail" parameterType="Expert_Review" resultType="Expert_Review">
+ 		select *
+ 		from expert_review
+ 		where user_id =#{user_id}
+ 		and expert_review_num=#{expert_review_num}
+ 	</select>
+ 	
+
+	
+</mapper> 

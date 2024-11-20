@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.jmAuto.dto.Mapper.mh">
+	<select id="InfoUserSel" resultType="User_Table" parameterType="String">
+		select 	u.USER_ID,
+				u.USER_PW,
+				u.USER_NAME,
+				u.USER_TEL,
+		        u.USER_ZIPCODE,
+		        u.USER_ADDR1,
+		        u.USER_ADDR2,
+		        u.USER_EMAIL,
+		        u.USER_REGDATE,
+		        u.BUZ_NUM,
+		        u.CERT_NUM,
+		        u.USER_LEVEL,
+		        u.USER_TYPE,
+		        u.DEL_STATE,
+		        u.APPROVAL,
+		        u.INTRODUCTION,
+		        SUBSTR(u.user_addr1,1,2) region,
+		        b.buz_addr,
+		        b.buz_name
+		from User_Table u join business b on u.buz_num = b.buz_num
+		where user_id = #{id}
+	</select>
+</mapper>

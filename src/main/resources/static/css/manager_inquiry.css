@@ -1,0 +1,315 @@
+@charset "UTF-8";
+body {
+	font-family: 'Pretendard';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+.manager_Qna_header {
+	display: flex;
+	justify-content: space-between;
+	margin: 40px 0 20px;
+	align-items: center;
+}
+
+.manager_Qna_header_text {
+	font-size: 24px;
+	font-weight: 550;
+}
+
+.keyword {
+	width: 600px;
+	height: 50px;
+	border: none;
+	padding: 20px;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.manager_Qna_header_search {
+	display: flex;
+	position: relative;
+}
+
+.manager_Qna_header_search_but{
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+	border: none;
+	width: 50px;
+	height: 30px;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.01);
+	cursor: pointer;
+}
+
+.Qna_header_but {
+	background-color: #ff4714;
+    color: #fdfdfd;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    height: 35px;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+}
+
+.Qna_header_but_text {
+	position: absolute;
+	top: 8px;
+	left: 30px;
+}
+
+.Qna_header_but:hover {
+	background-color: #323232; /* 버튼이 눌렸을 때 색상 변경 */
+    color: #fdfdfd; /* 텍스트 색상 변경 */
+    border: none;
+}
+
+.header_continer {
+    position: relative; /* No fixed position, it will scroll naturally */
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Still higher than the menu */
+}
+
+.menu_continer {
+    position: fixed;
+    top: 0; /* Stays fixed at the top */
+    z-index: 1000; /* Lower than the header */
+    height: 100vh; /* Full viewport height */
+}
+
+.manager_Qna_continer {
+	display: grid;
+	grid-template-columns: minmax(auto, 1320px);
+	justify-content: center;
+	max-width: 100%;
+	margin: 0px auto;
+	background-color: #f7f7f7;
+	height: auto;
+}
+
+.manager_Qna_List {
+	background-color: #fdfdfd;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+	height: auto;
+	margin: 0 0 40px;
+}
+
+.manager_Qna_table {
+	width: 100%;
+	table-layout: fixed;
+	display: flex;
+	justify-content: center;
+}
+
+.manager_Qna_table td {
+	color: #323232;
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.col_1 { width: 100px; text-align: center;} /* 대분류 */
+.col_2 { width: 160px; text-align: center;} /* 문의유형 */
+.col_3 { width: 140px; text-align: center;} /* 문의아이디 */
+.col_4 { width: 400px; text-align: center;} /* 문의제목 */
+.col_5 { width: 160px; text-align: center;}  /* 문의날짜 */
+.col_6 { width: 120px; text-align: center;} /* 문의file */
+.col_7 { width: 140px; height:auto; text-align: center; display: flex; justify-content: center;} /* 답변여부 */
+.col_8 { width: 100%; max-width:1230px; height: auto;}
+
+.tr_1 {
+	margin: 20px 0;
+	width: 100%;
+	max-width: 1280px;
+}
+
+.answer_item {
+	display: flex;
+	justify-content: space-between;
+	border-top: 0.4px solid #d1dbe4; 
+	padding: 20px 0;
+	cursor: pointer;
+	width: 100%;
+	max-width: 1280px;
+}
+
+.manager_Qna_text_1 {
+	color: #999999;
+	font-weight: 800;
+	margin: 20px 0;
+	font-size: 16px;
+}
+
+.answerRow {
+	display: none;
+	width: 100%;
+	max-width: 1230px;
+	height: auto;
+}
+
+.manager_Qna_answer_textarea{
+	width: 1190px;
+	height: auto;
+	min-height: 100px;
+	border: none;
+	padding: 15px;
+	background-color: #fdfdfd;
+	margin: 10px 20px;
+	font-size: 14px;
+	line-height: 19.6px;
+}
+
+.manager_Qna_td_box1 {
+	background-color: #ff4714;
+	height: 25px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.manager_Qna_td_text5 {
+	font-size: 11px;
+	color: #fdfdfd;
+	margin: 4px;
+	position: absolute;
+}
+
+.manager_Qna_td_box2 {
+	background-color: #323232;
+	height: 25px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.manager_Qna_td_text6 {
+	font-size: 11px;
+	color: #fdfdfd;
+	margin: 4px;
+	position: absolute;
+}
+
+.manager_Qna_answer {
+	background: #fafafa;
+	width: 1230px;
+	
+}
+
+.a_but_img {
+	width: 100%;
+	max-width: 21px;
+	height: auto;
+	cursor: pointer;
+}
+
+.manager_pagination_current {
+    background-color: #ff4714;
+    color: #fdfdfd; /* 텍스트 색상 */
+    padding: 5px 10px; /* 패딩 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-weight: bold; /* 글씨 두껍게 */
+}
+
+.manager_pagination {
+	font-size: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 80px;
+}
+
+.manager_pagination_a {
+	color: #323232;
+	margin: 0 5px;
+}
+
+.manager_pagination_a_next {
+	color: #ff4714;
+	text-decoration: underline;
+	text-underline-position:under;
+	font-weight: 700;
+	margin: 0 5px;
+}
+
+.manager_pagination_a_back {
+	color: #ff4714;
+	text-decoration: underline;
+	text-underline-position:under;
+	font-weight: 700;
+	margin: 0 5px;
+}
+
+.manager_Qna_answer_back{
+	background-color: #fdfdfd;
+	width: 1190px;
+	max-width: 1190px;
+	height: auto;
+	min-height: 100px;
+	margin: 10px auto 0;
+}
+
+.manager_Qna_answer_text1 {
+	padding: 15px;
+	width: 1160px;
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    line-height: 19.6px;
+}
+
+.manager_Qna_answer_title {
+	font-size: 16px;
+	font-weight: 900;
+	color: #323232;
+	padding: 20px 20px 0;
+}
+
+.manager_Qna_answer_back_2{
+	background-color: #fdfdfd;
+	width: 1190px;
+	max-width: 1190px;
+	height: auto;
+	min-height: 100px;
+	margin: 10px auto;
+}
+
+.manager_Qna_answer_text3 {
+	margin: 0 0 0 1070px;
+	font-size: 14px;
+	padding: 0 0 20px; 
+}
+
+.manager_Qna_answer_back_2 {
+	width: 1230px;
+}
+
+.manager_Qna_answer_but {
+	border: none;
+	background: #ff4714;
+	color: #fdfdfd;
+	padding: 5px 10px 8px;
+	transition: background-color 0.3s ease;
+	margin: 10px 0 20px 1138px;
+	align-items: center;
+	font-weight: 600;
+}
+
+.manager_Qna_answer_but:hover {
+	background-color: #323232; 
+}
+
+

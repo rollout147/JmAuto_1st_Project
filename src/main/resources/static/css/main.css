@@ -1,0 +1,604 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Pretendard';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: minmax(auto, 1320px);
+	justify-content: center;
+	padding: 0px;
+	max-width: 100%;
+	margin: 0px auto;
+	background-color: #ffffff;
+}
+
+.kakao_wrapper {
+	display: flex;
+	z-index: 5;
+	position: relative;
+	top: 800px;
+}
+
+.main_banner {
+	display: flex;
+	position: relative;
+	margin: 0px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.main_search_img {
+	display: flex;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: auto;
+	z-index: 1;
+}
+
+.main_car_img {
+	width: 100%;
+	max-width: 1260px;
+	height: auto;
+	position: absolute;
+	right: -400px;
+	bottom: 200px;
+	z-index: 1;
+}
+
+.search_input {
+	display: flex;
+	justify-content: space-between;
+	background-color: #fdfdfd;
+	width: 100%;
+	min-width: 1170px;
+	height: 150px;
+	position: relative;
+	align-items: center;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.06);
+	z-index: 3;
+	
+}
+
+.search {
+	background-color: #f0f0f0;
+	width: 80%;
+	height: 60px;
+	border: none;
+	margin: 0 20px 0 40px;
+	font-size: 22px;
+}
+
+.search_submit {
+	background: center/cover no-repeat url(/images/main/search_but.png);
+	width: 100px;
+	height: 100px;
+	margin: 0 40px 0 20px;
+	cursor: pointer;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+.main_search_div {
+	position: relative;
+}
+
+.main_search_form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	position: absolute;
+	right: 1540px;
+	bottom: 170px;
+	z-index: 2;
+	padding: 0px;
+	width: 100%;
+	height: auto;
+}
+
+.searchType_wrapper {
+	display: flex;
+	position: relative;
+	gap: 0px;
+	z-index: 1;
+	margin-bottom: 0px;
+	
+}
+
+.searchType_but1 + label {
+	display: block;
+    width: 256px;  /* 이미지 크기 */
+    height: 58px;
+    background: url('../images/main/kor_but.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+    background-size: cover;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.searchType_but2 + label {
+	display: block;
+    width: 256px;  /* 이미지 크기 */
+    height: 58px;
+    background: url('../images/main/gor_but.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+    background-size: cover;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.searchType_but3 + label {
+	display: block;
+    width: 256px;  /* 이미지 크기 */
+    height: 58px;
+    background: url('../images/main/eco_but.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+    background-size: cover;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.searchType_but1:checked + label {
+	width: 256px;  /* 이미지 크기 */
+    height: 58px;
+	background: url('../images/main/kor_but_chk.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.searchType_but2:checked + label {
+	width: 256px;  /* 이미지 크기 */
+    height: 58px;
+	background: url('../images/main/gor_but_chk.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+.searchType_but3:checked + label {
+	width: 256px;  /* 이미지 크기 */
+    height: 58px;
+	background: url('../images/main/eco_but_chk.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.02);
+}
+
+
+
+/* 전문가 리뷰 */
+
+.exp_rev_list{
+	display:flex;
+	justify-content: center;
+	gap:40px;
+	width: 100%;
+	margin: 80px 0;
+	padding: 0;
+}
+
+.exp_rev_list_back {
+	width: 1920px;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	display: inline;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	background: url('../images/main/per_rev_back.png') no-repeat center center;  /* 커스텀 이미지 경로 */
+}
+
+
+
+/* 전문가리뷰 배너 */
+.exp_rev_banner {
+	width: 100%;
+	max-width: 1920px;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	display: inline;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+}
+
+.exp_rev_banner_img {
+	display: flex;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 1920px;
+	height: auto;
+}
+
+.card_text_Exp_img{
+	cursor: pointer;
+}
+
+
+/* 프리미엄 차량 */
+.prm_hed {
+	background-color: #f0f0f0;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	display: inline;
+	justify-content: center;
+	align-items: center;
+}
+
+.prm_title{
+	font-family: 'Pretendard';
+	font-size: 32px;
+	color: #323232;
+	font-weight: bold;
+	margin: 80px auto 0px;
+	max-width: 1280px;
+	left: 320px;
+}
+
+.prm_car_background {
+	background-color: #f0f0f0;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+.card_text_body{
+	position: relative;
+}
+
+.card-img{
+	width: 400px;
+	height: auto;
+	display: block;
+}
+
+.card-img-overlay {
+	position: absolute; /* 텍스트가 이미지 위에 겹쳐지게 절대 위치 설정 */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.3); /* 텍스트 가독성을 위한 반투명 배경 */
+}
+
+.exp_card_title {
+	color: #fff; /* 텍스트 색상 흰색 */
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+.prm_car-all {
+	display: grid;
+	grid-template-columns: repeat(3, 400px); /* 3개의 열을 동일한 크기로 배치 */
+	gap: 40px;
+	margin: 40px 0 80px;
+	left: 320px;
+	max-width: 1280px;
+}
+
+.prm_car-list {
+	background-color: #fafafa;
+	display:flex;
+	flex-direction: column;
+    padding:0px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width:400px;
+    margin: 0;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.04);
+}
+
+.card-img-top {
+	width: 100%;
+	max-width: 400px;
+	height: auto;
+	
+}
+
+.card-title {
+	font-size: 32px;
+	font-weight: bold;
+	color: #323232;
+	margin: 20px 20px 10px 20px;
+}
+
+.card-text_1 {
+	font-size: 36px;
+	font-weight: bold;
+	color: #ff4714;
+	margin: 10px 20px 20px 20px;
+	word-wrap: break-word; /* 부모 요소를 넘는 경우 줄바꿈 */
+    word-break: break-all; /* 단어가 길 경우 단어 중간에서 줄바꿈 */
+    white-space: normal; /* 공백이나 줄바꿈을 기본적으로 처리 */
+    overflow-wrap: break-word; /* 최신 표준 줄바꿈 처리 */
+    max-width: 360px;
+    flex-shrink: 0; /* 부모 요소에서 줄어들지 않도록 강제 */
+}
+
+.card-text_2 {
+	font-size: 14px;
+	color: #313131;
+	margin: 20px 20px 20px 20px;
+}
+
+
+
+/* 추천차량 및 배너(매거진) */
+.chutitle_all{
+	margin: 80px 20px 40px;
+	display: grid;
+	grid-template-areas:
+				"	a	b	c	"
+				;
+	grid-template-columns: repeat(3, 400px);
+	gap: 40px;
+	position: relative;
+	max-width: 1280px;
+}
+
+.chuhed_title, .chubanner {
+	font-family: 'Pretendard';
+	font-size: 32px;
+	color: #323232;
+	font-weight: bold;
+	margin: 0;
+	
+}
+
+.chuhed_title {
+	grid-area: a;
+	margin: 0;
+	align-items: center;
+}
+
+.chubanner_tile {
+	grid-area: c;
+	display: flex;
+	justify-content: space-between;
+}
+
+.chuhed_a {
+	display: flex;
+	grid-area: b;
+	justify-content: flex-end;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+}
+
+.chuhed_a2{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.chu_banner{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr) 400px;
+	gap:40px;
+	width: 1320px;
+	margin: 0 0 80px;
+}
+
+.chu_list {
+	display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열로 설정 */
+    grid-template-rows: repeat(2, minmax(100px, auto)); /* 2행으로 설정 */
+    grid-gap: 40px; /* 각 카드 사이 간격 */
+    margin: 0 0 0 20px;
+}
+
+.chu_carList {
+	width : 100%;
+	display:flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content:flex-start;
+	margin: 0 auto;
+}
+
+.chu-img {
+	width: 253.333px;
+	height: auto;
+	margin: 0;
+}
+.chu-body {
+	align-items: center;
+	margin: 0px;
+}
+
+.chu-body img {
+	margin-right: 10px;
+}
+
+.chu-title {
+	font-size: 18px;
+	max-width: 200px;
+	word-wrap: break-word;
+}
+
+.chu-title, .chu-text {
+	margin: 10px 0px;
+}
+
+.chu-text {
+	font-size: 21px;
+}
+
+.chu_img_banner {
+	margin: 0px;
+	width: 400px;
+	height: auto;
+}
+
+.chu_body_all {
+	margin: 10px 0px;
+	word-wrap: break-word;
+}
+
+/* 가로배너 */
+.bann_gr {
+	display: flex;
+	width: 1280px;
+	height: auto;
+	margin: 40px 20px 80px;
+}
+
+/* 생생한리뷰 */
+.rev_hed {
+	background-color: #f0f0f0;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	justify-content: center;
+}
+
+.rev_h3 {
+	font-size: 32px;
+	font-weight: bold;
+	color: #323232;
+	max-width: 1280px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
+	left: 320px;
+}
+
+.rev_background {
+	background-color: #f0f0f0;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rev_list {
+	display: grid;
+	grid-template-columns: repeat(3, 400px); /* 3열로 설정 */
+	gap: 40px;
+	margin: 0px 20px 80px;
+	left: 320px;
+	max-width: 1280px;
+}
+
+.rev_revlist {
+	background: #ffffff;
+	box-shadow: 0 0 10px 5px rgb(0,0,0,0.04);
+	height: auto;
+}
+
+.rev_img {
+	width: 400px;
+	height: auto;
+}
+
+.rev_evaluetion {
+	margin: 20px 20px 10px;
+}
+
+.rev_body_text {
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    white-space: normal;
+    width: 360px;
+    height: auto;
+    max-height: 64px;
+    font-family: 'Pretendard', ExtraBold;
+    font-weight: bold;
+    font-size: 21px;
+    margin: 10px 20px;
+}
+
+.rev_body_text1 {
+	margin: 10px 20px;
+}
+
+.rev_body_text2 {
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    width: 360px;
+    height: auto;
+    max-height: 64px;
+    margin: 10px 20px;
+    font-size: 14px;
+}
+
+.rev_body_date {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 20px 20px;
+	right: 0px;
+	bottom: 0px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #ff4714;
+}
+
+/* 공지사항 */
+.gogi_h3 {
+	font-size: 32px;
+	font-weight: bold;
+	color: #323232;
+	margin: 80px 20px 40px;
+} 
+
+.gogi_list {
+	display: flex;
+	justify-content: center;
+	margin: 0 20px 80px;
+	border: 0.4px solid #BFBFBF;
+	width: 1280px;
+	height: 400px;
+}
+
+.gogi_table {
+	align-items: center;
+	margin: 40px 0;
+}
+
+.gogi_ys {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+}
+
+.gogi_text {
+	display: flex;
+	width: 990px;
+	height: auto;
+	font-size: 19px;
+	font-weight: bold;
+	align-items: center;
+}
+
+.gogi_text_date {
+	display: flex;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+
+.col-2 {
+	cursor: pointer;
+}
+
+
+
+
+
+

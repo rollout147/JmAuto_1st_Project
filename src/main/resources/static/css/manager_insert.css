@@ -1,0 +1,129 @@
+@charset "UTF-8";
+body {
+	font-family: 'Pretendard';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+.header_continer {
+    position: relative; /* No fixed position, it will scroll naturally */
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Still higher than the menu */
+}
+
+.menu_continer {
+    position: fixed;
+    top: 0; /* Stays fixed at the top */
+    z-index: 1000; /* Lower than the header */
+    height: 100vh; /* Full viewport height */
+}
+
+.faq_insert_container {
+	display: grid;
+	grid-template-columns: minmax(auto, 1320px);
+	justify-content: center;
+	width: 100%;
+	margin: 0px auto;
+	background-color: #f7f7f7;
+	height: 100%;
+}
+
+
+.faq_input_hed_text {
+	font-size: 32px;
+	font-weight: 550;
+	margin: 40px 20px;
+	height: auto;
+}
+
+.faq_input_table {
+	width: 1320px;
+	height: auto;
+	padding: 0 10px;
+	border-spacing: 10px;
+}
+
+.faq_int_table_title {
+	width: 300px;
+	height: auto;
+	text-align: center;
+	background-color: #323232;
+}
+
+.faq_int_table_text {
+	font-size: 18px;
+	font-weight: 600;
+	color: #fdfdfd;
+	margin: 15px 0;
+}
+
+.faq_input_table_input {
+	border: none;
+	background: #fdfdfd;
+	width: 970px;
+	font-size: 18px;
+	padding: 15px;
+}
+
+.faq_input_table_textarea {
+	border: none;
+	background-color: #fdfdfd;
+	width: 970px;
+	height: auto;
+	min-height: 100px;
+	font-size: 18px;
+	padding: 15px;
+	line-height: 25.2px;
+}
+
+.faq_int_select {
+	border: none;
+	width: 300px;
+	height: auto;
+	font-size: 18px;
+	padding: 15px;
+}
+
+.faq_sel_but_su {
+	border: none;
+	background-color: #c4c4c4;
+	color: #fdfdfd;
+	padding: 15px 70px;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	margin: 20px 15px 0 0;
+}
+
+.faq_sel_but_reset {
+	border: none;
+	background-color: #c4c4c4;
+	color: #fdfdfd;
+	padding: 15px 70px;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	margin: 20px 15px;
+}
+
+.faq_sel_but_sub {
+	border: none;
+	background-color: #ff4714;
+	color: #fdfdfd;
+	padding: 15px 70px;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	margin: 30px 0 0 15px;
+}
+
+.faq_sel_table_td {
+	text-align: center;
+}
+
+
+
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.oracle.jmAuto.dto.Mapper.ms">
+ 	
+ 	<select id="myhoogi" parameterType="map" resultType="Review">
+ 		select r.*, p.price
+ 		from review r join payment p
+ 		on r.approval_num = p.approval_num
+ 		where r.user_id =#{user_id}
+ 		and r.approval_num=#{approval_num}
+ 		and r.del_state =0
+ 	</select>
+
+ 	
+ 	<update id="hoogiDelete" parameterType="String">
+ 		update review
+ 		set del_state =1
+ 		where user_id=#{user_id}
+ 		and approval_num =#{approval_num}
+ 	</update>
+ 	
+ 	<select id="reviewExists" parameterType="map" resultType="int">
+		select count(*)
+		from review
+		where user_id=#{user_id}
+		and approval_num =#{approval_num}
+	</select>
+	
+ 	<select id="myhoogiDetail" parameterType="ReviewListInfo" resultType="ReviewListInfo">
+         SELECT  r.APPROVAL_NUM, r.USER_ID, p.SELL_NUM,
+                i.img_url, r.file_name1, r.file_name2, r.file_name3, r.file_url, 
+                r.EVALUATION, r.review_title, 
+                c.manu_date,
+                  SUBSTR(c.manu_date,1,2) || '년' || substr(c.manu_date,3,4) || '월식' manu_date_char,
+                c.mileage, c.fuel, c.brand, c.model,
+                r.review_content, r.review_date
+        FROM     review r
+        JOIN     payment p on r.APPROVAL_NUM = p.APPROVAL_NUM
+        JOIN     car_general_info c on p.SELL_NUM = c.SELL_NUM
+        JOIN     car_images i on c.SELL_NUM = i.SELL_NUM
+        WHERE     r.APPROVAL_NUM = #{approval_num}
+        AND     i.img_url LIKE '%' || '_1.' || '%'
+     </select>
+	
+	
+	<insert id="hoogiwrite" parameterType="Review">
+         INSERT INTO review (
+                             user_id, 
+                             approval_num, 
+                             review_title, 
+                             review_content, 
+                             review_date,
+                             evaluation, 
+                             file_url,
+                               file_name1,
+                             file_name2,
+                             file_name3,
+                             del_state 
+                             )
+
+         VALUES                (
+         					
+                             #{user_id},
+                             #{approval_num},
+                             #{review_title}, 
+                             #{review_content}, 
+                             sysdate, 
+                             #{evaluation},
+                              #{file_url},
+                             #{file_name1},
+                             #{file_name2},
+                             #{file_name3},
+                            0 
+                            ) 
+     </insert>
+	
+	<select id="del_state" parameterType="String" resultType="Review">
+		select del_state
+		from review
+		where approval_num=#{approval_num}
+	</select>
+	
+	<select id="hoogiya" parameterType="map" resultType="Review">
+		select *
+		from review
+		where user_id =#{user_id}
+		and approval_num = #{approval_num}
+	</select>
+</mapper> 
